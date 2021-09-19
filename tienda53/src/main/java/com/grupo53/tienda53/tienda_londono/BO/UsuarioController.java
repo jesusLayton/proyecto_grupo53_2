@@ -22,30 +22,30 @@ public class UsuarioController {
 	 * @DeleteMapping eliminar o borrar
 	 * */
 
-	@PostMapping("/registrarusuario")
+	@PostMapping("/registrarUsuario")
 	public void registrarUsuario(UsuarioVO user) {
 		UsuarioDAO Dao = new UsuarioDAO();
 		Dao.registrarUsuario(user);
 	}
 
-	@GetMapping("/consultarusuario")
+	@GetMapping("/consultarUsuario")
 	public ArrayList<UsuarioVO> consultarUsuarios(String usuario) {
 		UsuarioDAO Dao = new UsuarioDAO();
 		return Dao.consultarUsuario(usuario);
 	}
 
-	@GetMapping("/listarusuarios")
+	@GetMapping("/listarUsuarios")
 	public ArrayList<UsuarioVO> listaDeUsuarios() {
 		UsuarioDAO Dao = new UsuarioDAO();
 		return Dao.listaDeUsuarios();
 	}
-	@DeleteMapping("/eliminarusuario")
+	@DeleteMapping("/eliminarUsuario")
 	public void eliminarUsuario(Integer cedula_usuario) {
 		UsuarioDAO Dao = new UsuarioDAO();
 		Dao.eliminarUsuario(cedula_usuario);
 	}
 	
-	@PutMapping("/actualizarusuarios")
+	@PutMapping("/actualizarUsuarios")
 	public void actualizarUsuario(UsuarioVO user) {
 		UsuarioDAO Dao = new UsuarioDAO();
 		Dao.registrarUsuario(user);

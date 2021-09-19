@@ -29,25 +29,29 @@
     </head>
     <body>
 
-    <div class="login-box">
+    <div class="login-box" id="login-box">
 
       <!-- imagen logo-->
       <img src="Imagenes/LOGO.svg" class="avatar" alt="logo">
       <!-- titulo-->
       <h1>BIENVENIDO</h1>
+      
+      <div id="error" class="alert alert-danger visually-hidden" role="alert">
+		Usuario o contraseña incorrecta!
+	</div>
 
       <form>
         <label for="Username"><i class="fas fa-user"></i> Usuario</label>
-        <input type="text" required placeholder="Usuario" class="us">
+        <input type="text" placeholder="Usuario" class="us" id="user">
 
         <label for="Password"><i class="fas fa-lock"></i> Contraseña</label>
-        <input type="password" required placeholder="Contraseña" class="pas">
+        <input type="password" placeholder="Contraseña" class="pas" id="pass">
 
         <div class="forgot-pass">
           <p>Olvidaste tu contraseña? <a href="#">click aquí</a></p>
         </div>
         <!-- Botones-->
-        <input type="submit" class="btn btn-dark" value="Iniciar Sesión">
+        <input type="button" class="btn btn-dark" value="Iniciar Sesión" onclick="comparar()">
         <button type="button" class="btn btn-dark">Registrarse</button>
       </form>
     </div>
@@ -55,6 +59,77 @@
     <footer class="position-absolute bottom-0 right-50 text-center">
       <img src="Imagenes/Fondo-50.png" alt="">
     </footer> 
+    
+    <!-- Script que trae la informacion de la api y la compara con las entradas -->
+	<script>
+		function comparar() {
+			//trayendo texto de input de username
+			var x = document.getElementById("user").value;
+			//trayendo texto de input de password
+			var y = document.getElementById("pass").value;
+			//url de la api 
+			var baseurl = "http://localhost:8080/listarUsuarios";
+			//creando un objeto de manipulacion de solicitudes
+			var xmlhttp = new XMLHttpRequest();
+			//abriendo la api
+			xmlhttp.open("GET", baseurl, true);
+			//funcion interna que compara la información
+			xmlhttp.onreadystatechange = function() {
+				//si se obtiene un 200 (Conexion correcta)
+				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+					//convirtiendo JSON en variable javascrip
+					var usuarios = JSON.parse(xmlhttp.responseText);
+					
+					//verificando uno por uno si existe ese usuario
+					for (i = 0; i < usuarios.length; i++) {
+						
+						//imprimiendo en la consola del navegador pata verificar
+						console.log(usuarios);
+						console.log(x);
+						console.log(usuarios[i].usuario);
+						console.log(y);
+						console.log(usuarios[i].password);
+						
+						//si el nombre coincide
+						if (usuarios[i].usuario === x) {
+							//si la clave coincide
+							if (usuarios[i].password === y) {
+								console.log("si");
+								var element = document.getElementById("error");
+								element.classList.add("visually-hidden");
+								document.getElementById("user").value = "";
+								document.getElementById("pass").value = "";
+								window.location.href = "listausuarios.jsp";
+								document.getElementById("login-box").style.height= "420px";
+								return;
+							} else {
+								//si la clave NO coincide
+								console.log("error clave");
+								var element = document.getElementById("error");
+								element.classList.remove("visually-hidden");
+								document.getElementById("user").value = "";
+								document.getElementById("pass").value = "";
+								document.getElementById("login-box").style.height= "474px";
+								return;
+							}
+						}
+					}
+					//Si no existe el usuario
+					console.log("no encontrado");
+					
+					//quitando la capacidad de ocultacion del error para mostrarlo
+					var element = document.getElementById("error");
+					element.classList.remove("visually-hidden");
+					document.getElementById("user").value = "";
+					document.getElementById("pass").value = "";
+					document.getElementById("login-box").style.height= "474px";
+					return;
+				}
+			};
+			//ejecutando
+			xmlhttp.send();
+		}
+	</script>
     
   </body>
 </html>
