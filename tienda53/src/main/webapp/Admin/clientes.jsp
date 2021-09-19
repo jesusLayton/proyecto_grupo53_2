@@ -30,35 +30,36 @@
 <!-- Tamaño de la pantalla -->
 <meta name="viewport" content="width=device-width">
 <!-- titulo de la pestaña -->
-<title>Lista de usuarios</title>
+<title>Lista de clientes</title>
+
 
 
 <script>
-	var baseurl = "http://localhost:8080/listarUsuarios";
-	function loadusuarios() {
+	var baseurl = "http://localhost:8080/listarClientes";
+	function loadclientes() {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", baseurl, true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-				var usuarios = JSON.parse(xmlhttp.responseText);
-				var tbltop = "<table class='table table-dark table-striped'><tr><th>Cedula</th><th>Email</th><th>Nombre</th><th>Password</th><th>Usuario</th></tr>";
+				var clientes = JSON.parse(xmlhttp.responseText);
+				var tbltop = "<table class='table table-dark table-striped'><tr><th>Cedula</th><th>Direccion</th><th>Email</th><th>Nombre</th><th>Telefono</th></tr>";
 				var main = "";
-				for (i = 0; i < usuarios.length; i++) {
-					main += "<tr><td>" + usuarios[i].cedula_usuario
-							+ "</td><td>" + usuarios[i].email_usuario
-							+ "</td><td>" + usuarios[i].nombre_usuario
-							+ "</td><td>" + usuarios[i].password + "</td><td>"
-							+ usuarios[i].usuario + "</td></tr>";
+				for (i = 0; i < clientes.length; i++) {
+					main += "<tr><td>" + clientes[i].cedula_cliente
+							+ "</td><td>" + clientes[i].direccion_cliente
+							+ "</td><td>" + clientes[i].email_cliente
+							+ "</td><td>" + clientes[i].nombre_cliente + "</td><td>"
+							+ clientes[i].telefono_cliente + "</td></tr>";
 				}
 				var tblbottom = "</table>";
 				var tbl = tbltop + main + tblbottom;
-				document.getElementById("usuariosinfo").innerHTML = tbl;
+				document.getElementById("clientesinfo").innerHTML = tbl;
 			}
 		};
 		xmlhttp.send();
 	}
 	window.onload = function() {
-		loadusuarios();
+		loadclientes();
 	}
 </script>
 
@@ -76,11 +77,11 @@
 	
 	<div style="padding-left: 5px;">
 	
-		<h1> Tabla de usuarios</h1>
+		<h1> Tabla de clientes</h1>
 			<div class="container">
 				<div class="row">
 					<!--  Aqui es donde se autogenera la tabla basado en el script -->
-					<div class="col align-self-center" id="usuariosinfo">
+					<div class="col align-self-center" id="clientesinfo">
 					
 					</div>
 	
@@ -90,8 +91,8 @@
 		<h1> Operaciones</h1>
 			<div class="container">
 				<div class="row">
-					<button type="button"  onclick="window.location.href='/insertarusuario.jsp'">
-					Agregar usuario</button>
+					<button type="button"  onclick="window.location.href='/insertarcliente.jsp'">
+					Agregar cliente</button>
 					
 					
 				</div>
