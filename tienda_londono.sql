@@ -19,8 +19,6 @@ INSERT INTO usuarios VALUES(44444444,'eduardo.londono@tienda_londono.com','Eduar
 
 CREATE UNIQUE INDEX unique_user ON usuarios(cedula_usuario);
 
-SELECT * FROM usuarios;
-
 DELETE FROM usuarios WHERE cedula_usuario = 55555555
 
 CREATE TABLE clientes (
@@ -40,4 +38,54 @@ INSERT INTO clientes VALUES(104,'Cra 10 # 20 -340','cliente5@cliente.com','Clien
 
 CREATE UNIQUE INDEX unique_user ON clientes(cedula_cliente);
 
+CREATE TABLE ventas (
+codigo_venta BIGINT(20) PRIMARY KEY,
+cedula_cliente BIGINT(20) NOT NULL,
+cedula_usuario BIGINT(20) NOT NULL,
+ivaventa DOUBLE NOT NULL,
+total_venta DOUBLE NOT NULL,
+valor_venta DOUBLE NOT NULL
+);
+
+CREATE UNIQUE INDEX unique_user ON ventas(codigo_venta);
+
+CREATE TABLE detalle_ventas (
+codigo_detalle_venta BIGINT(20) PRIMARY KEY,
+cantidad_producto INT(11) NOT NULL,
+codigo_producto BIGINT(20) NOT NULL,
+codigo_venta BIGINT NOT NULL,
+valor_total DOUBLE NOT NULL,
+valor_venta DOUBLE NOT NULL,
+valor_iva DOUBLE NOT NULL
+);
+
+CREATE UNIQUE INDEX unique_user ON detalle_ventas(codigo_detalle_venta);
+
+CREATE TABLE proveedores (
+nitproveedor BIGINT(20) PRIMARY KEY,
+ciudad_proveedor VARCHAR(255) NOT NULL,
+direccion_proveedor VARCHAR(255) NOT NULL,
+nombre_proveedor VARCHAR(255) NOT NULL,
+telefono_proveedor VARCHAR(255) NOT NULL
+);
+
+CREATE UNIQUE INDEX unique_user ON proveedor(nitproveedor);
+
+CREATE TABLE productos (
+codigo_producto BIGINT(20) PRIMARY KEY,
+iva_compra DOUBLE NOT NULL,
+nitproveedor BIGINT(20) NOT NULL,
+nombre_producto VARCHAR(255) NOT NULL,
+precio_compra DOUBLE NOT NULL,
+precio_venta DOUBLE NOT NULL
+);
+
+CREATE UNIQUE INDEX unique_user ON proveedor(nitproveedor);
+
+SELECT * FROM usuarios;
 SELECT * FROM clientes;
+SELECT * FROM ventas;
+SELECT * FROM detalle_ventas;
+SELECT * FROM proveedores;
+SELECT * FROM productos;
+
