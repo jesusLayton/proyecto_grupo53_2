@@ -50,7 +50,4 @@ public class UsuarioController {
 		UsuarioDAO Dao = new UsuarioDAO();
 		Dao.registrarUsuario(user);
 	}
-	
-	
-
 }

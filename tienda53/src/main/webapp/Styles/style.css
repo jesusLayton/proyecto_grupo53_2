@@ -64,7 +64,7 @@ body {
   font-size: 16px;
 }
 
-.btn {
+.btn-login {
   background-color: #333!important;
   width: 45%!important;
   height: 36px!important;
@@ -108,4 +108,17 @@ footer img {
 
 i {
   color: #8DB600;
+}
+
+.i-white{
+	color: #FFF;
+}
+
+
+.sidebar-logo{
+	height: 400%;
+}
+
+.sidebar-brand{
+	margin: 10px 0px;
 }
