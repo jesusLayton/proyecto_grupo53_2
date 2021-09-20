@@ -1,4 +1,4 @@
-<%@include  file="includes/header.jsp" %>
+	<%@include  file="includes/header.jsp" %>
 <body id="page-top">
 	
 <!-- Page Wrapper -->
@@ -16,40 +16,34 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+<div class="text-center"> 
+	<div class="mb-5"> 
+		<h1>CLIENTES</h1>
+		<hr>
+	</div>
+
+
 <!-- CODE HERE -->
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-
-
-<!-- paquete de caracteres -->
-<meta charset="utf-8">
-<!-- Tamaño de la pantalla -->
-<meta name="viewport" content="width=device-width">
-<!-- titulo de la pestaña -->
-<title>Lista de clientes</title>
-
 
 
 <script>
-	var baseurl = "http://localhost:8080/listarClientes";
-	function loadclientes() {
+	var baseurl = "http://localhost:8080/listarclientes";
+	function loadClientes() {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", baseurl, true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var clientes = JSON.parse(xmlhttp.responseText);
-				var tbltop = "<table class='table table-dark table-striped'><tr><th>Cedula</th><th>Direccion</th><th>Email</th><th>Nombre</th><th>Telefono</th></tr>";
+				var tbltop = "<table class='table table-hover table-striped'><tr><th>Cedula</th><th>Nombre</th><th>Dirección</th><th>Email</th><th>Telefono</th><th>Editar</th><th>Eliminar</th></tr>";
 				var main = "";
 				for (i = 0; i < clientes.length; i++) {
 					main += "<tr><td>" + clientes[i].cedula_cliente
+							+ "</td><td>" + clientes[i].nombre_cliente
 							+ "</td><td>" + clientes[i].direccion_cliente
 							+ "</td><td>" + clientes[i].email_cliente
-							+ "</td><td>" + clientes[i].nombre_cliente + "</td><td>"
-							+ clientes[i].telefono_cliente + "</td></tr>";
+							+ "</td><td>" + clientes[i].telefono_cliente + "</td>"
+							+ "<td><a href='editarCliente.jsp?cedula=" + clientes[i].cedula_cliente + "'><i class='fas fa-pen'></i></a></td>"
+							+ "<td><a href='eliminarCliente.jsp?cedula=" + clientes[i].cedula_cliente + "'><i class='fas fa-trash'></i></a></td></tr>";
 				}
 				var tblbottom = "</table>";
 				var tbl = tbltop + main + tblbottom;
@@ -59,56 +53,21 @@
 		xmlhttp.send();
 	}
 	window.onload = function() {
-		loadclientes();
+		loadClientes();
 	}
 </script>
-
-</head>
-
-
-<body>
-	
-
-	
-	</nav>
-	
 	
 	<!-- contenido  -->
+
+	<!--  Aqui es donde se autogenera la tabla basado en el script -->
+	<div class="col align-self-center" id="clientesinfo">
 	
-	<div style="padding-left: 5px;">
-	
-		<h1> Tabla de clientes</h1>
-			<div class="container">
-				<div class="row">
-					<!--  Aqui es donde se autogenera la tabla basado en el script -->
-					<div class="col align-self-center" id="clientesinfo">
-					
-					</div>
-	
-				</div>
-			</div>
-	
-		<h1> Operaciones</h1>
-			<div class="container">
-				<div class="row">
-					<button type="button"  onclick="window.location.href='/insertarcliente.jsp'">
-					Agregar cliente</button>
-					
-					
-				</div>
-			</div>
 	</div>
+	 <a href="nuevoCliente.jsp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		 <i class="fas fa-download fa-sm text-white-50"></i> Nuevo Cliente</a>
 
-
-	
-
-
-</body>
-</html>
-
-
+</div>
 <!-- END CODE HERE -->
-
 
    </div>
 <!-- /.container-fluid -->

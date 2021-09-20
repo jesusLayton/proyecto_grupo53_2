@@ -19,7 +19,7 @@ INSERT INTO usuarios VALUES(44444444,'eduardo.londono@tienda_londono.com','Eduar
 
 CREATE UNIQUE INDEX unique_user ON usuarios(cedula_usuario);
 
-DELETE FROM usuarios WHERE cedula_usuario = 55555555
+DELETE FROM usuarios WHERE cedula_usuario = 55555555;
 
 CREATE TABLE clientes (
 cedula_cliente BIGINT(20) PRIMARY KEY,
@@ -89,3 +89,4 @@ SELECT * FROM detalle_ventas;
 SELECT * FROM proveedores;
 SELECT * FROM productos;
 
+DELETE FROM usuarios WHERE cedula_usuario < 10 AND cedula_usuario > 0;
