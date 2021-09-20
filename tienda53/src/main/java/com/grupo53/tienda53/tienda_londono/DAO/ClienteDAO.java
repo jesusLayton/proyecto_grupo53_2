@@ -26,11 +26,11 @@ public class ClienteDAO {
 			//String que contiene la sentencia insert a ejecutar
 			String sentencia = "INSERT INTO clientes VALUES(" 
 					+ user.getCedula_cliente() + "," + "'"
+					+ user.getDireccion_cliente() + "'," + "'"					
 					+ user.getEmail_cliente() + "'," + "'" 
 					+ user.getNombre_cliente() + "'," + "'" 
-					+ user.getPassword()+ "'," + "'" 
-					+ user.getCliente() + "'" 
-					+ ");";
+					+ user.getTelefono_cliente()
+					+ "');";
 			
 			//se ejecuta la sentencia en la base de datos
 			estatuto.executeUpdate(sentencia);
@@ -79,10 +79,10 @@ public class ClienteDAO {
 			if (res.next()) {
 				ClienteVO Cliente = new ClienteVO();
 				Cliente.setCedula_cliente(Integer.parseInt(res.getString("cedula_cliente")));
+				Cliente.setDireccion_cliente(res.getString("direccion_cliente"));
 				Cliente.setEmail_cliente(res.getString("email_cliente"));
 				Cliente.setNombre_cliente(res.getString("nombre_cliente"));
-				Cliente.setPassword(res.getString("password"));
-				Cliente.setCliente(res.getString("cliente"));
+				Cliente.setTelefono_cliente(res.getString("telefono_cliente"));
 
 				listaclientes.add(Cliente);
 			}
@@ -121,7 +121,7 @@ public class ClienteDAO {
 
 		try {
 			//prepare la sentencia en la base de datos
-			PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM clientes");
+			PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM clientes ORDER BY nombre_cliente");
 			
 			//ejecute la sentencia
 			ResultSet res = consulta.executeQuery();
@@ -130,10 +130,10 @@ public class ClienteDAO {
 			while (res.next()) {
 				ClienteVO Cliente = new ClienteVO();
 				Cliente.setCedula_cliente(Integer.parseInt(res.getString("cedula_cliente")));
+				Cliente.setDireccion_cliente(res.getString("direccion_cliente"));
 				Cliente.setEmail_cliente(res.getString("email_cliente"));
 				Cliente.setNombre_cliente(res.getString("nombre_cliente"));
-				Cliente.setPassword(res.getString("password"));
-				Cliente.setCliente(res.getString("cliente"));
+				Cliente.setTelefono_cliente(res.getString("telefono_cliente"));
 
 				listaclientes.add(Cliente);
 			}
@@ -209,11 +209,11 @@ public class ClienteDAO {
 			
 			//String con la sentencia a ejecutar
 			String sentencia = "UPDATE clientes "
-					+ "SET email_cliente = '"+user.getEmail_cliente()+"',"
-					+ "nombre_cliente = '"+user.getNombre_cliente()+"',"
-					+ "password = '"+user.getPassword()+"',"
-					+ "cliente = '"+user.getCliente()+"' "
-					+ "WHERE cedula_cliente = "+user.getCedula_cliente()+";";
+					+ "SET email_cliente = '" + user.getEmail_cliente() + "',"
+					+ "nombre_cliente = '" + user.getNombre_cliente() + "',"
+					+ "direccion_cliente = '" + user.getDireccion_cliente() + "',"
+					+ "telefono_cliente = '" + user.getTelefono_cliente() + "' "
+					+ "WHERE cedula_cliente = " + user.getCedula_cliente() + ";";
 			
 			//ejecuta la sentencia 
 			estatuto.executeUpdate(sentencia);

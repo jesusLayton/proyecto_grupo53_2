@@ -16,21 +16,14 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+<div class="text-center"> 
+	<div class="mb-5"> 
+		<h1>USUARIOS</h1>
+		<hr>
+	</div>
+
+
 <!-- CODE HERE -->
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-
-
-<!-- paquete de caracteres -->
-<meta charset="utf-8">
-<!-- Tamaño de la pantalla -->
-<meta name="viewport" content="width=device-width">
-<!-- titulo de la pestaña -->
-<title>Lista de usuarios</title>
 
 
 <script>
@@ -41,14 +34,16 @@
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var usuarios = JSON.parse(xmlhttp.responseText);
-				var tbltop = "<table class='table table-dark table-striped'><tr><th>Cedula</th><th>Email</th><th>Nombre</th><th>Password</th><th>Usuario</th></tr>";
+				var tbltop = "<table class='table table-hover table-striped'><tr><th>Cedula</th><th>Nombre</th><th>Email</th><th>Password</th><th>Telefono</th><th>Editar</th><th>Eliminar</th></tr>";
 				var main = "";
 				for (i = 0; i < usuarios.length; i++) {
 					main += "<tr><td>" + usuarios[i].cedula_usuario
-							+ "</td><td>" + usuarios[i].email_usuario
 							+ "</td><td>" + usuarios[i].nombre_usuario
+							+ "</td><td>" + usuarios[i].email_usuario
 							+ "</td><td>" + usuarios[i].password + "</td><td>"
-							+ usuarios[i].usuario + "</td></tr>";
+							+ usuarios[i].usuario + "</td>"
+							+ "<td><a href='editarUsuario.jsp?cedula=" + usuarios[i].cedula_usuario + "'><i class='fas fa-pen'></i></a></td>"
+							+ "<td><a href='eliminarUsuario.jsp?cedula=" + usuarios[i].cedula_usuario + "'><i class='fas fa-trash'></i></a></td></tr>";
 				}
 				var tblbottom = "</table>";
 				var tbl = tbltop + main + tblbottom;
@@ -57,57 +52,23 @@
 		};
 		xmlhttp.send();
 	}
+	
 	window.onload = function() {
 		loadusuarios();
 	}
 </script>
-
-</head>
-
-
-<body>
-	
-
-	
-	</nav>
-	
 	
 	<!-- contenido  -->
+
+	<!--  Aqui es donde se autogenera la tabla basado en el script -->
+	<div class="col align-self-center" id="usuariosinfo">
 	
-	<div style="padding-left: 5px;">
-	
-		<h1> Tabla de usuarios</h1>
-			<div class="container">
-				<div class="row">
-					<!--  Aqui es donde se autogenera la tabla basado en el script -->
-					<div class="col align-self-center" id="usuariosinfo">
-					
-					</div>
-	
-				</div>
-			</div>
-	
-		<h1> Operaciones</h1>
-			<div class="container">
-				<div class="row">
-					<button type="button"  onclick="window.location.href='/insertarusuario.jsp'">
-					Agregar usuario</button>
-					
-					
-				</div>
-			</div>
 	</div>
+	 <a href="nuevoUsuario.jsp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		 <i class="fas fa-download fa-sm text-white-50"></i> Nuevo Usuario</a>
 
-
-	
-
-
-</body>
-</html>
-
-
+</div>
 <!-- END CODE HERE -->
-
 
    </div>
 <!-- /.container-fluid -->

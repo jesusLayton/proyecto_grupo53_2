@@ -121,7 +121,7 @@ public class UsuarioDAO {
 
 		try {
 			//prepare la sentencia en la base de datos
-			PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM usuarios");
+			PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM usuarios ORDER BY nombre_usuario");
 			
 			//ejecute la sentencia
 			ResultSet res = consulta.executeQuery();

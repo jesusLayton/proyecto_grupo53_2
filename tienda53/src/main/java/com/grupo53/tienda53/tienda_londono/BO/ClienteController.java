@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.grupo53.tienda53.tienda_londono.DAO.ClienteDAO;
 import com.grupo53.tienda53.tienda_londono.DTO.ClienteVO;
@@ -23,9 +24,10 @@ public class ClienteController {
 	 * */
 
 	@PostMapping("/registrarcliente")
-	public void registrarCliente(ClienteVO user) {
+	public ModelAndView registrarCliente(ClienteVO user) {
 		ClienteDAO Dao = new ClienteDAO();
 		Dao.registrarCliente(user);
+		return new ModelAndView("redirect:" + "Admin/clientes.jsp");
 	}
 
 	@GetMapping("/consultarcliente")
