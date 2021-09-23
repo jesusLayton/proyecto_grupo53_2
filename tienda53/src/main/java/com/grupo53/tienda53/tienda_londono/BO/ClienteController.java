@@ -31,7 +31,7 @@ public class ClienteController {
 	}
 
 	@GetMapping("/consultarcliente")
-	public ArrayList<ClienteVO> consultarClientes(String Cliente) {
+	public ArrayList<ClienteVO> consultarClientes(Integer Cliente) {
 		ClienteDAO Dao = new ClienteDAO();
 		return Dao.consultarCliente(Cliente);
 	}
