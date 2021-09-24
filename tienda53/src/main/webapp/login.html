@@ -76,7 +76,7 @@
 			//funcion interna que compara la información
 			xmlhttp.onreadystatechange = function() {
 				//si se obtiene un 200 (Conexion correcta)
-				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 					//convirtiendo JSON en variable javascrip
 					var usuarios = JSON.parse(xmlhttp.responseText);
 					
@@ -91,9 +91,9 @@
 						console.log(usuarios[i].password);
 						
 						//si el nombre coincide
-						if (usuarios[i].usuario === x) {
+						if (usuarios[i].usuario == x) {
 							//si la clave coincide
-							if (usuarios[i].password === y) {
+							if (usuarios[i].password == y) {
 								console.log("si");
 								var element = document.getElementById("error");
 								element.classList.add("visually-hidden");
