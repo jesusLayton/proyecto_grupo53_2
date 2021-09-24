@@ -62,7 +62,7 @@ public class ClienteDAO {
 	 * @param documento
 	 * @return
 	 */
-	public ArrayList<ClienteVO> consultarCliente(Integer cliente) {	
+	public ArrayList<ClienteVO> consultarCliente(String cliente) {	
 		//lista que contendra el o los clientes obtenidos
 		ArrayList<ClienteVO> listaclientes = new ArrayList<ClienteVO>();		
 		//instancia de la conexión
@@ -70,9 +70,9 @@ public class ClienteDAO {
 		try {
 			//prepare la sentencia en la base de datos
 			PreparedStatement consulta = conex.getConnection()
-					.prepareStatement("SELECT * FROM clientes where cedula_cliente = ? ");		
+					.prepareStatement("SELECT * FROM clientes where cliente = ? ");		
 			// se cambia el comodin ? por el dato que ha llegado en el parametro de la funcion
-			consulta.setInt(1, cliente);			
+			consulta.setString(1, cliente);			
 			//ejecute la sentencia
 			ResultSet res = consulta.executeQuery();			
 			//cree un objeto basado en la clase entidad con los datos encontrados
