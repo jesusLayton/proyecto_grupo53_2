@@ -34,7 +34,7 @@
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var usuarios = JSON.parse(xmlhttp.responseText);
-				var tbltop = "<table class='table table-hover table-striped'><tr><th>Cedula</th><th>Nombre</th><th>Email</th><th>Password</th><th>Telefono</th><th>Editar</th><th>Eliminar</th></tr>";
+				var tbltop = "<table class='table table-hover table-striped'><tr><th>Cedula</th><th>Nombre</th><th>Email</th><th>Password</th><th>Usuario</th><th>Editar</th><th>Eliminar</th></tr>";
 				var main = "";
 				for (i = 0; i < usuarios.length; i++) {
 					main += "<tr><td>" + usuarios[i].cedula_usuario
