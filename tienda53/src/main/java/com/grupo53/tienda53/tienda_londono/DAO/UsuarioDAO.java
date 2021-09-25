@@ -70,7 +70,7 @@ public class UsuarioDAO {
 		try {
 			//prepare la sentencia en la base de datos
 			PreparedStatement consulta = conex.getConnection()
-					.prepareStatement("SELECT * FROM usuarios where usuario = ? ");		
+					.prepareStatement("SELECT * FROM usuarios WHERE usuario = ? ");		
 			// se cambia el comodin ? por el dato que ha llegado en el parametro de la funcion
 			consulta.setString(1, usuario);			
 			//ejecute la sentencia
@@ -170,7 +170,7 @@ public class UsuarioDAO {
 			Statement consulta = conex.getConnection().createStatement();
 			
 			//preparando sentencia a realizar
-			String sentencia = "delete from usuarios where cedula_usuario=" + cedula_usuario + ";";
+			String sentencia = "delete FROM usuarios WHERE cedula_usuario=" + cedula_usuario + ";";
 			
 			//impresion de verificación
 			System.out.println("Registrado " + sentencia);
