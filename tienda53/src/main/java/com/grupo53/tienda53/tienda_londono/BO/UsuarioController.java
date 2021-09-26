@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.grupo53.tienda53.tienda_londono.DAO.UsuarioDAO;
 import com.grupo53.tienda53.tienda_londono.DTO.UsuarioVO;
@@ -22,35 +23,33 @@ public class UsuarioController {
 	 * @DeleteMapping eliminar o borrar
 	 * */
 
-	@PostMapping("/registrarusuario")
-	public void registrarUsuario(UsuarioVO user) {
+	@PostMapping("/registrarUsuario")
+	public ModelAndView registrarUsuario(UsuarioVO user) {
 		UsuarioDAO Dao = new UsuarioDAO();
 		Dao.registrarUsuario(user);
+		return new ModelAndView("redirect:" + "Admin/usuarios.jsp");
 	}
 
-	@GetMapping("/consultarusuario")
+	@GetMapping("/consultarUsuario")
 	public ArrayList<UsuarioVO> consultarUsuarios(String usuario) {
 		UsuarioDAO Dao = new UsuarioDAO();
 		return Dao.consultarUsuario(usuario);
 	}
 
-	@GetMapping("/listarusuarios")
+	@GetMapping("/listarUsuarios")
 	public ArrayList<UsuarioVO> listaDeUsuarios() {
 		UsuarioDAO Dao = new UsuarioDAO();
 		return Dao.listaDeUsuarios();
 	}
-	@DeleteMapping("/eliminarusuario")
+	@DeleteMapping("/eliminarUsuario")
 	public void eliminarUsuario(Integer cedula_usuario) {
 		UsuarioDAO Dao = new UsuarioDAO();
 		Dao.eliminarUsuario(cedula_usuario);
 	}
 	
-	@PutMapping("/actualizarusuarios")
+	@PutMapping("/actualizarUsuarios")
 	public void actualizarUsuario(UsuarioVO user) {
 		UsuarioDAO Dao = new UsuarioDAO();
-		Dao.registrarUsuario(user);
+		Dao.actualizarUsuario(user);
 	}
-	
-	
-
 }
