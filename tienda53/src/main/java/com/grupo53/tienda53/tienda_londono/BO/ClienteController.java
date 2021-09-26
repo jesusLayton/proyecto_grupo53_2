@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class ClienteController {
 	public ModelAndView registrarCliente(ClienteVO user) {
 		ClienteDAO Dao = new ClienteDAO();
 		Dao.registrarCliente(user);
-		return new ModelAndView("redirect:" + "Admin/clientes.jsp");
+		return new ModelAndView("redirect:" + "Admin/clientes.jsp?create=1");
 	}
 
 	@GetMapping("/consultarcliente")
@@ -41,10 +42,11 @@ public class ClienteController {
 		ClienteDAO Dao = new ClienteDAO();
 		return Dao.listaDeClientes();
 	}
-	@DeleteMapping("/eliminarcliente")
-	public void eliminarCliente(Integer cedula_Cliente) {
+	@GetMapping("/eliminarcliente/{cedula}")
+	public ModelAndView eliminarCliente(@PathVariable(value = "cedula") Integer cedula_Cliente) {
 		ClienteDAO Dao = new ClienteDAO();
 		Dao.eliminarCliente(cedula_Cliente);
+		return new ModelAndView("redirect:" + "../Admin/clientes.jsp?delete=1");
 	}
 	
 	@PutMapping("/actualizarclientes")

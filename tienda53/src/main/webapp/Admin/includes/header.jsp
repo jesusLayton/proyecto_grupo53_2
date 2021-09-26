@@ -10,18 +10,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
+   	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
 
     <title>Tienda Londono</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="vendors/fontawesome/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     
-    <!-- Custom data Tables for this page -->
-	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
+	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="src/styles/style.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
+	
     <!-- Custom styles for this template-->
     <link href="../Styles/sb-admin-2.css" rel="stylesheet">
 	<link href="../Styles/style.css" rel="stylesheet">
