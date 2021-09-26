@@ -34,7 +34,10 @@
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var usuarios = JSON.parse(xmlhttp.responseText);
-				var tbltop = "<table class='table table-hover table-striped'><tr><th>Cedula</th><th>Nombre</th><th>Email</th><th>Password</th><th>Usuario</th><th>Editar</th><th>Eliminar</th></tr>";
+				var tbltop = "<div class='card-body'>";
+				tbltop += "<div class='table-responsive'>";
+				tbltop +="<table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>";
+				tbltop += "<thead><tr><th>Cedula</th><th>Nombre</th><th>Email</th><th>Password</th><th>Usuario</th><th>Editar</th><th>Eliminar</th></tr></thead><tbody>";
 				var main = "";
 				for (i = 0; i < usuarios.length; i++) {
 					main += "<tr><td>" + usuarios[i].cedula_usuario
@@ -45,7 +48,7 @@
 							+ "<td><a href='editarUsuario.jsp?cedula=" + usuarios[i].cedula_usuario + "'><i class='fas fa-pen'></i></a></td>"
 							+ "<td><a href='eliminarUsuario.jsp?cedula=" + usuarios[i].cedula_usuario + "'><i class='fas fa-trash'></i></a></td></tr>";
 				}
-				var tblbottom = "</table>";
+				var tblbottom = "</tbody></table></div></div>";
 				var tbl = tbltop + main + tblbottom;
 				document.getElementById("usuariosinfo").innerHTML = tbl;
 			}
