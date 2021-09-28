@@ -28,27 +28,29 @@
 	<!-- contenido  -->
 	
 	
-      <div id="delete" class="d-none alert alert-danger visually-hidden" role="alert">
-		Cliente eliminado correctamente
-	  </div>
-	  
-	  <div id="create" class="d-none alert alert-success visually-hidden" role="alert">
-		Cliente creado correctamente
-	  </div>
-	  
-	  <div id="update" class="d-none alert alert-info visually-hidden" role="alert">
-		Cliente modificado correctamente
-	  </div>
-		
+			
 	<div class="pb-3 pr-3 d-flex justify-content-end">
 		 <a href="nuevoCliente.jsp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
 		 <i class="fas fa-download fa-sm text-white-50"></i> Nuevo Cliente</a>
 		
 	</div>
 	
+      <div id="delete" class="d-none alert alert-danger" role="alert">
+		Cliente eliminado correctamente
+	  </div>
+	  
+	  <div id="create" class="d-none alert alert-success" role="alert">
+		Cliente creado correctamente
+	  </div>
+	  
+	  <div id="update" class="d-none alert alert-info" role="alert">
+		Cliente modificado correctamente
+	  </div>
+
+	
 	<!--  Aqui es donde se autogenera la tabla basado en el script -->
 	<div class="col align-self-center">
-		<table class='data-table table stripe hover nowrap'>
+		<table id="tabla" class='data-table table stripe hover nowrap'>
 			<thead>
 				<tr>
 					<th class='table-plus'>Cedula</th>
@@ -83,7 +85,7 @@
 							+ "</td><td>" + clientes[i].direccion_cliente
 							+ "</td><td>" + clientes[i].email_cliente
 							+ "</td><td>" + clientes[i].telefono_cliente + "</td>"
-							+ "<td><a href='editarCliente.jsp?cedula=" + clientes[i].cedula_cliente + "'><i class='fas fa-pen'></i></a></td>"
+							+ "<td><a href='actualizarcliente.jsp?cedula=" + clientes[i].cedula_cliente + "'><i class='fas fa-pen'></i></a></td>"
 							+ "<td><a onclick='eliminar(" + clientes[i].cedula_cliente + ")'><i class='fas fa-trash'></i></a></td></tr>";
 				}
 				document.getElementById("clientesinfo").innerHTML = main;
@@ -97,16 +99,10 @@
 			window.location.replace("http://localhost:8080/eliminarcliente/" + cedula);
 		}
 	}
-	
-	function getParameterByName(name) {
-	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-	    results = regex.exec(location.search);
-	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
-	
+		
 	var getVar = getParameterByName('delete');
-	if (getVar == 1){
+	console.log(getVar);
+	if (getVar == "1"){
 		document.getElementById("delete").classList.remove("d-none")
 	}
 	
@@ -119,8 +115,7 @@
 	if (getVar == 1){
 		document.getElementById("update").classList.remove("d-none")
 	} 
-	
-	
+
 	
 </script>
 

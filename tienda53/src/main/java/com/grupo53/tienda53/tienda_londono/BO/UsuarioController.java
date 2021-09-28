@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,14 +27,16 @@ public class UsuarioController {
 	@PostMapping("/registrarUsuario")
 	public ModelAndView registrarUsuario(UsuarioVO user) {
 		UsuarioDAO Dao = new UsuarioDAO();
-		Dao.registrarUsuario(user);
-		return new ModelAndView("redirect:" + "Admin/usuarios.jsp");
+		if(Dao.registrarUsuario(user)) 
+			return new ModelAndView("redirect:" + "../Admin/usuarios.jsp?create=1");
+		else
+			return new ModelAndView("redirect:" + "../Admin/nuevoUsuario.jsp?error=1");
 	}
 
-	@GetMapping("/consultarUsuario")
-	public ArrayList<UsuarioVO> consultarUsuarios(String usuario) {
+	@GetMapping("/consultarUsuario/{cedula}")
+	public ArrayList<UsuarioVO> consultarUsuarios(@PathVariable(value = "cedula") Integer cedulaUsuario) {
 		UsuarioDAO Dao = new UsuarioDAO();
-		return Dao.consultarUsuario(usuario);
+		return Dao.consultarUsuario(cedulaUsuario);
 	}
 
 	@GetMapping("/listarUsuarios")
@@ -41,15 +44,17 @@ public class UsuarioController {
 		UsuarioDAO Dao = new UsuarioDAO();
 		return Dao.listaDeUsuarios();
 	}
-	@DeleteMapping("/eliminarUsuario")
-	public void eliminarUsuario(Integer cedula_usuario) {
+	@GetMapping("/eliminarUsuario/{cedula}")
+	public ModelAndView eliminarUsuario(@PathVariable(value = "cedula") Integer cedulaUsuario) {
 		UsuarioDAO Dao = new UsuarioDAO();
-		Dao.eliminarUsuario(cedula_usuario);
+		Dao.eliminarUsuario(cedulaUsuario);
+		return new ModelAndView("redirect:" + "../Admin/usuarios.jsp?delete=1");
 	}
 	
-	@PutMapping("/actualizarUsuarios")
-	public void actualizarUsuario(UsuarioVO user) {
+	@PostMapping("/actualizarUsuario")
+	public ModelAndView actualizarUsuario(UsuarioVO user) {
 		UsuarioDAO Dao = new UsuarioDAO();
 		Dao.actualizarUsuario(user);
+		return new ModelAndView("redirect:" + "../Admin/usuarios.jsp?update=1");
 	}
 }

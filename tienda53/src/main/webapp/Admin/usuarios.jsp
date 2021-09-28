@@ -33,6 +33,18 @@
 		
 	</div>
 	
+	<div id="delete" class="d-none alert alert-danger" role="alert">
+		Usuario eliminado correctamente
+	  </div>
+	  
+	  <div id="create" class="d-none alert alert-success" role="alert">
+		Usuario creado correctamente
+	  </div>
+	  
+	  <div id="update" class="d-none alert alert-info" role="alert">
+		Usuario modificado correctamente
+	  </div>
+	
 	<!--  Aqui es donde se autogenera la tabla basado en el script -->
 	<div class="col align-self-center">
 		<table class='data-table table stripe hover nowrap'>
@@ -70,8 +82,8 @@
 							+ "</td><td>" + usuarios[i].email_usuario
 							+ "</td><td>" + usuarios[i].password 
 							+ "</td><td>" + usuarios[i].usuario + "</td>"
-							+ "<td><a href='editarUsuario.jsp?cedula=" + usuarios[i].cedula_usuario + "'><i class='fas fa-pen'></i></a></td>"
-							+ "<td><a href='eliminarUsuario.jsp?cedula=" + usuarios[i].cedula_usuario + "'><i class='fas fa-trash'></i></a></td></tr>";
+							+ "<td><a href='actualizarusuario.jsp?cedula=" + usuarios[i].cedula_usuario + "'><i class='fas fa-pen'></i></a></td>"
+							+ "<td><a onclick='eliminar(" + usuarios[i].cedula_usuario + ")'><i class='fas fa-trash'></i></a></td></tr>";
 				}
 				document.getElementById("usuariosinfo").innerHTML = main;
 			}
@@ -79,7 +91,33 @@
 		xmlhttp.send();
 	}
 
-
+	function eliminar(cedula){
+		if(confirm("Seguro que desea eliminar el usuario con cedula: " + cedula + "?")){
+			window.location.replace("http://localhost:8080/eliminarUsuario/" + cedula);
+		}
+	}
+	
+	function getParameterByName(name) {
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	    results = regex.exec(location.search);
+	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+	
+	var getVar = getParameterByName('delete');
+	if (getVar == 1){
+		document.getElementById("delete").classList.remove("d-none")
+	}
+	
+	var getVar = getParameterByName('create');
+	if (getVar == 1){
+		document.getElementById("create").classList.remove("d-none")
+	} 
+	
+	var getVar = getParameterByName('update');
+	if (getVar == 1){
+		document.getElementById("update").classList.remove("d-none")
+	} 
 </script>
 	
 </div>
