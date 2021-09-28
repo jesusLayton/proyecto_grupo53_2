@@ -28,9 +28,9 @@ public class UsuarioController {
 	public ModelAndView registrarUsuario(UsuarioVO user) {
 		UsuarioDAO Dao = new UsuarioDAO();
 		if(Dao.registrarUsuario(user)) 
-			return new ModelAndView("redirect:" + "../Admin/usuarios.jsp?create=1");
+			return new ModelAndView("redirect:" + "Admin/usuarios.jsp?create=1");
 		else
-			return new ModelAndView("redirect:" + "../Admin/nuevoUsuario.jsp?error=1");
+			return new ModelAndView("redirect:" + "Admin/nuevoUsuario.jsp?error=1");
 	}
 
 	@GetMapping("/consultarUsuario/{cedula}")
@@ -55,6 +55,6 @@ public class UsuarioController {
 	public ModelAndView actualizarUsuario(UsuarioVO user) {
 		UsuarioDAO Dao = new UsuarioDAO();
 		Dao.actualizarUsuario(user);
-		return new ModelAndView("redirect:" + "../Admin/usuarios.jsp?update=1");
+		return new ModelAndView("redirect:" + "Admin/usuarios.jsp?update=1");
 	}
 }
