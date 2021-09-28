@@ -1,4 +1,4 @@
-CREATE DATABASE tienda_londono;
+CREATE DATABASE IF NOT EXISTS tienda_londono;
 
 USE tienda_londono;
 

@@ -26,7 +26,12 @@
 <!-- CODE HERE -->
 
 <div class="d-flex justify-content-center mb-5">
-	<div class="col-2"> 
+	<div class="col-5"> 
+	
+	
+	<div id="error" class="d-none alert alert-danger"
+				role="alert">El usuario ya existe</div>
+
 	
 		<form id="registrarUsuario" action="../registrarUsuario" method="post">
 			<div class="form-group">
@@ -54,8 +59,19 @@
 			</div>
 		</form>
 			
-	</div>		
+	</div>	
+		
 </div>
+
+
+<script>
+
+var getVar = getParameterByName('error');
+if (getVar == 1){
+	document.getElementById("error").classList.remove("d-none")
+} 
+</script>
+
 <!-- END CODE HERE -->
 </div>
 

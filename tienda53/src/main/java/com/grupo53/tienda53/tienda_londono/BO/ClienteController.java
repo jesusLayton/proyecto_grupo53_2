@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,14 +27,17 @@ public class ClienteController {
 	@PostMapping("/registrarcliente")
 	public ModelAndView registrarCliente(ClienteVO user) {
 		ClienteDAO Dao = new ClienteDAO();
-		Dao.registrarCliente(user);
-		return new ModelAndView("redirect:" + "Admin/clientes.jsp");
+		if (Dao.registrarCliente(user))
+			return new ModelAndView("redirect:" + "Admin/clientes.jsp?create=1");
+		else 
+			return new ModelAndView("redirect:" + "Admin/nuevoCliente.jsp?error=1");
+			
 	}
 
-	@GetMapping("/consultarcliente")
-	public ArrayList<ClienteVO> consultarClientes(String Cliente) {
+	@GetMapping("/consultarcliente/{cedula}")
+	public ArrayList<ClienteVO> consultarClientes(@PathVariable(value = "cedula") Integer cedulaCliente) {
 		ClienteDAO Dao = new ClienteDAO();
-		return Dao.consultarCliente(Cliente);
+		return Dao.consultarCliente(cedulaCliente);
 	}
 
 	@GetMapping("/listarclientes")
@@ -41,16 +45,21 @@ public class ClienteController {
 		ClienteDAO Dao = new ClienteDAO();
 		return Dao.listaDeClientes();
 	}
-	@DeleteMapping("/eliminarcliente")
-	public void eliminarCliente(Integer cedula_Cliente) {
+	@GetMapping("/eliminarcliente/{cedula}")
+	public ModelAndView eliminarCliente(@PathVariable(value = "cedula") Integer cedulaCliente) {
 		ClienteDAO Dao = new ClienteDAO();
-		Dao.eliminarCliente(cedula_Cliente);
+		Dao.eliminarCliente(cedulaCliente);
+		return new ModelAndView("redirect:" + "../Admin/clientes.jsp?delete=1");
 	}
 	
-	@PutMapping("/actualizarclientes")
-	public void actualizarCliente(ClienteVO user) {
+	@PostMapping("/actualizarclientes")
+	public ModelAndView actualizarCliente(ClienteVO user) {
 		ClienteDAO Dao = new ClienteDAO();
-		Dao.actualizarCliente(user);
+		if (Dao.actualizarCliente(user))
+			return new ModelAndView("redirect:" + "Admin/clientes.jsp?update=1");
+		else 
+			return new ModelAndView("redirect:" + "Admin/actualizarcliente.jsp?error=1&cedula=" + user.getCedula_cliente());
+
 	}
 	
 	

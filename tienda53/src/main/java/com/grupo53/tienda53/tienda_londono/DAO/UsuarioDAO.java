@@ -15,7 +15,7 @@ public class UsuarioDAO {
 	 * 
 	 * @param user
 	 */
-	public void registrarUsuario(UsuarioVO user) {
+	public boolean registrarUsuario(UsuarioVO user) {
 		//llama y crea una instancia de la clase encargada de hacer la conexión
 		Conexion conex = new Conexion();
 
@@ -39,6 +39,7 @@ public class UsuarioDAO {
 			//cerrando la sentencia y la conexión
 			estatuto.close();
 			conex.desconectar();
+			return true;
 
 		} catch (SQLException e) {
 			//si hay un error en el sql mostrarlo
@@ -46,12 +47,14 @@ public class UsuarioDAO {
 			System.out.println("No se pudo insertar el usuario");
 			System.out.println(e.getMessage());
 			System.out.println(e.getErrorCode());
+			return false;
 		} catch (Exception e) {
 			//si hay cualquier otro error mostrarlo
 			System.out.println("------------------- ERROR --------------");
 			System.out.println("No se pudo insertar el usuario");
 			System.out.println(e.getMessage());
 			System.out.println(e.getLocalizedMessage());
+			return false;
 		}
 
 	}
@@ -62,7 +65,7 @@ public class UsuarioDAO {
 	 * @param documento
 	 * @return
 	 */
-	public ArrayList<UsuarioVO> consultarUsuario(String usuario) {	
+	public ArrayList<UsuarioVO> consultarUsuario(Integer cedula) {	
 		//lista que contendra el o los usuarios obtenidos
 		ArrayList<UsuarioVO> listausuarios = new ArrayList<UsuarioVO>();		
 		//instancia de la conexión
@@ -70,9 +73,9 @@ public class UsuarioDAO {
 		try {
 			//prepare la sentencia en la base de datos
 			PreparedStatement consulta = conex.getConnection()
-					.prepareStatement("SELECT * FROM usuarios WHERE usuario = ? ");		
+					.prepareStatement("SELECT * FROM usuarios WHERE cedula_usuario = ? ");		
 			// se cambia el comodin ? por el dato que ha llegado en el parametro de la funcion
-			consulta.setString(1, usuario);			
+			consulta.setInt(1, cedula);			
 			//ejecute la sentencia
 			ResultSet res = consulta.executeQuery();			
 			//cree un objeto basado en la clase entidad con los datos encontrados
@@ -170,7 +173,7 @@ public class UsuarioDAO {
 			Statement consulta = conex.getConnection().createStatement();
 			
 			//preparando sentencia a realizar
-			String sentencia = "delete FROM usuarios WHERE cedula_usuario=" + cedula_usuario + ";";
+			String sentencia = "delete FROM usuarios WHERE cedula_usuario = " + cedula_usuario + ";";
 			
 			//impresion de verificación
 			System.out.println("Registrado " + sentencia);

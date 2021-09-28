@@ -15,7 +15,7 @@ public class ClienteDAO {
 	 * 
 	 * @param user
 	 */
-	public void registrarCliente(ClienteVO user) {
+	public boolean registrarCliente(ClienteVO user) {
 		//llama y crea una instancia de la clase encargada de hacer la conexión
 		Conexion conex = new Conexion();
 
@@ -39,6 +39,8 @@ public class ClienteDAO {
 			//cerrando la sentencia y la conexión
 			estatuto.close();
 			conex.desconectar();
+			
+			return true;
 
 		} catch (SQLException e) {
 			//si hay un error en el sql mostrarlo
@@ -46,12 +48,15 @@ public class ClienteDAO {
 			System.out.println("No se pudo insertar el cliente");
 			System.out.println(e.getMessage());
 			System.out.println(e.getErrorCode());
+			
+			return false;
 		} catch (Exception e) {
 			//si hay cualquier otro error mostrarlo
 			System.out.println("------------------- ERROR --------------");
 			System.out.println("No se pudo insertar el cliente");
 			System.out.println(e.getMessage());
 			System.out.println(e.getLocalizedMessage());
+			return false;
 		}
 
 	}
@@ -62,7 +67,7 @@ public class ClienteDAO {
 	 * @param documento
 	 * @return
 	 */
-	public ArrayList<ClienteVO> consultarCliente(String cliente) {	
+	public ArrayList<ClienteVO> consultarCliente(Integer cedula) {	
 		//lista que contendra el o los clientes obtenidos
 		ArrayList<ClienteVO> listaclientes = new ArrayList<ClienteVO>();		
 		//instancia de la conexión
@@ -72,7 +77,7 @@ public class ClienteDAO {
 			PreparedStatement consulta = conex.getConnection()
 					.prepareStatement("SELECT * FROM clientes where cedula_cliente = ? ");		
 			// se cambia el comodin ? por el dato que ha llegado en el parametro de la funcion
-			consulta.setString(1, cliente);			
+			consulta.setInt(1, cedula);			
 			//ejecute la sentencia
 			ResultSet res = consulta.executeQuery();			
 			//cree un objeto basado en la clase entidad con los datos encontrados
@@ -198,7 +203,7 @@ public class ClienteDAO {
 
 	}
 
-	public void actualizarCliente(ClienteVO user) {
+	public boolean actualizarCliente(ClienteVO user) {
 		
 		//instancia de conexion
 		Conexion conex = new Conexion();
@@ -224,6 +229,8 @@ public class ClienteDAO {
 			//cerrando sentencia y conexión
 			estatuto.close();
 			conex.desconectar();
+			
+			return true;
 
 		} catch (SQLException e) {
 			//si hay un error en el sql mostrarlo
@@ -231,12 +238,14 @@ public class ClienteDAO {
 			System.out.println("No se pudo actualizar  el cliente");
 			System.out.println(e.getMessage());
 			System.out.println(e.getErrorCode());
+			return false;
 		} catch (Exception e) {
 			//si hay cualquier otro error mostrarlo
 			System.out.println("------------------- ERROR --------------");
 			System.out.println("No se pudo eliminar el cliente");
 			System.out.println(e.getMessage());
 			System.out.println(e.getLocalizedMessage());
+			return false;
 		}
 
 	}
