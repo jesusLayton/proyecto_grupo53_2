@@ -1,6 +1,12 @@
 package com.grupo53.tienda53.tienda_londono.DTO;
 
-public class ClienteVO {
+import java.io.Serializable;
+
+//todas las clases entidad deben ser serializables, y deben estar encapsuladas
+public class ClienteVO implements Serializable {
+	
+	//identificador unico de las clases entidad
+	private static final long serialVersionUID = 1L;
 	
 	private Integer cedula_cliente;
 	private String direccion_cliente;

@@ -18,7 +18,7 @@
 
 <div class="text-center"> 
 	<div class="mb-5"> 
-		<h1>CLIENTES</h1>
+		<h1>PROVEEDORES</h1>
 		<hr>
 	</div>
 
@@ -30,21 +30,24 @@
 	
 			
 	<div class="pb-3 pr-3 d-flex justify-content-end">
-		 <a href="nuevoCliente.jsp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-		 <i class="fas fa-download fa-sm text-white-50"></i> Nuevo Cliente</a>
+		 <a href="nuevoProveedor.jsp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		 <i class="fas fa-download fa-sm text-white-50"></i> Nuevo Proveedor</a>
 		
 	</div>
 	
       <div id="delete" class="d-none alert alert-danger" role="alert">
-		Cliente eliminado correctamente
+		Proveedor eliminado correctamente
 	  </div>
 	  
 	  <div id="create" class="d-none alert alert-success" role="alert">
-		Cliente creado correctamente
+		Proveedor creado correctamente
 	  </div>
 	  
 	  <div id="update" class="d-none alert alert-info" role="alert">
-		Cliente modificado correctamente
+		Proveedor modificado correctamente
+	  </div>
+	  <div id="error" class="d-none alert alert-warning" role="alert">
+		Proveedor no pudo ser eliminado.
 	  </div>
 
 	
@@ -53,50 +56,49 @@
 		<table id="tabla" class='data-table table stripe hover nowrap'>
 			<thead>
 				<tr>
-					<th class='table-plus'>Cedula</th>
+					<th class='table-plus'>Nit</th>
 					<th>Nombre</th>
 					<th>Dirección</th>
-					<th>Email</th>
+					<th>Ciudad</th>
 					<th>Teléfono</th>
 					<th class='datatable-nosort'>Editar</th>
 					<th class='datatable-nosort'>Eliminar</th>
 				</tr>
 			</thead>
-			<tbody id="clientesinfo">
+			<tbody id="proveedoresinfo">
 			
 			</tbody>
 		</table>	
 	</div>
 	
 <script>
-	var baseurl = "http://localhost:8080/listarclientes";
-	 loadClientes();
-
-	 function loadClientes() {
+	var baseurl = "http://localhost:8080/listarProveedores";
+	loadproveedores();
+	function loadproveedores() {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", baseurl, true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-				var clientes = JSON.parse(xmlhttp.responseText);
+				var proveedores = JSON.parse(xmlhttp.responseText);
 				var main = "";
-				for (i = 0; i < clientes.length; i++) {
-					main += "<tr><td>" + clientes[i].cedula_cliente
-							+ "</td><td>" + clientes[i].nombre_cliente
-							+ "</td><td>" + clientes[i].direccion_cliente
-							+ "</td><td>" + clientes[i].email_cliente
-							+ "</td><td>" + clientes[i].telefono_cliente + "</td>"
-							+ "<td><a href='actualizarcliente.jsp?cedula=" + clientes[i].cedula_cliente + "'><i class='fas fa-pen'></i></a></td>"
-							+ "<td><a onclick='eliminar(" + clientes[i].cedula_cliente + ")'><i class='fas fa-trash'></i></a></td></tr>";
+				for (i = 0; i < proveedores.length; i++) {
+					main += "<tr><td>" + proveedores[i].nit_proveedor
+							+ "</td><td>" + proveedores[i].nombre_proveedor
+							+ "</td><td>" + proveedores[i].direccion_proveedor
+							+ "</td><td>" + proveedores[i].ciudad_proveedor
+							+ "</td><td>" + proveedores[i].telefono_proveedor + "</td>"
+							+ "<td><a href='actualizarProveedor.jsp?nit=" + proveedores[i].nit_proveedor + "'><i class='fas fa-pen'></i></a></td>"
+							+ "<td><a onclick='eliminar(" + proveedores[i].nit_proveedor + ")'><i class='fas fa-trash'></i></a></td></tr>";
 				}
-				document.getElementById("clientesinfo").innerHTML = main;
+				document.getElementById("proveedoresinfo").innerHTML = main;
 			}
 		};
 		xmlhttp.send();
 	}
 	
-	function eliminar(cedula){
-		if(confirm("Seguro que desea eliminar el cliente con cedula: " + cedula + "?")){
-			window.location.replace("http://localhost:8080/eliminarcliente/" + cedula);
+	function eliminar(nit){
+		if(confirm("Seguro que desea eliminar el proveedor con Nit: " + nit + "?")){
+			window.location.replace("http://localhost:8080/eliminarProveedor/" + nit);
 		}
 	}
 		
@@ -114,6 +116,11 @@
 	var getVar = getParameterByName('update');
 	if (getVar == 1){
 		document.getElementById("update").classList.remove("d-none")
+	} 
+	
+	var getVar = getParameterByName('error');
+	if (getVar == 1){
+		document.getElementById("error").classList.remove("d-none")
 	} 
 
 	
