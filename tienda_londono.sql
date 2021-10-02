@@ -62,31 +62,47 @@ valor_iva DOUBLE NOT NULL
 CREATE UNIQUE INDEX unique_user ON detalle_ventas(codigo_detalle_venta);
 
 CREATE TABLE proveedores (
-nitproveedor BIGINT(20) PRIMARY KEY,
+nit_proveedor BIGINT(20) PRIMARY KEY,
 ciudad_proveedor VARCHAR(255) NOT NULL,
 direccion_proveedor VARCHAR(255) NOT NULL,
 nombre_proveedor VARCHAR(255) NOT NULL,
 telefono_proveedor VARCHAR(255) NOT NULL
 );
 
+INSERT INTO proveedores VALUES(100,'Av 1 # 2 -34','proveedor1@proveedor.com','proveedor 1','2345678');
+INSERT INTO proveedores VALUES(101,'Av 2 # 3 -45','proveedor2@proveedor.com','proveedor 2','6457894');
+INSERT INTO proveedores VALUES(102,'Av 9 # 8 -78','proveedor3@proveedor.com','proveedor 3','6585678');
+INSERT INTO proveedores VALUES(103,'Av 6 # 8 -25','proveedor4@proveedor.com','proveedor 4','2458678');
+INSERT INTO proveedores VALUES(104,'Cra 10 # 20 -340','proveedor5@proveedor.com','proveedor 5','6447515');
+INSERT INTO proveedores VALUES(105,'Av 1 # 2 -34','proveedor1@proveedor.com','proveedor 1','2345678');
+INSERT INTO proveedores VALUES(106,'Av 2 # 3 -45','proveedor2@proveedor.com','proveedor 2','6457894');
+INSERT INTO proveedores VALUES(107,'Av 9 # 8 -78','proveedor3@proveedor.com','proveedor 3','6585678');
+INSERT INTO proveedores VALUES(108,'Av 6 # 8 -25','proveedor4@proveedor.com','proveedor 4','2458678');
+INSERT INTO proveedores VALUES(109,'Cra 10 # 20 -340','proveedor5@proveedor.com','proveedor 5','6447515');
+
 CREATE UNIQUE INDEX unique_user ON proveedor(nitproveedor);
 
 CREATE TABLE productos (
 codigo_producto BIGINT(20) PRIMARY KEY,
 iva_compra DOUBLE NOT NULL,
-nitproveedor BIGINT(20) NOT NULL,
+nit_proveedor BIGINT(20) NOT NULL,
 nombre_producto VARCHAR(255) NOT NULL,
 precio_compra DOUBLE NOT NULL,
-precio_venta DOUBLE NOT NULL
+precio_venta DOUBLE NOT NULL,
+FOREIGN KEY (nitproveedor) REFERENCES proveedores(nitproveedor)
 );
+
+INSERT INTO productos VALUES(201,0.19,100,'Leche Descremada',2000.0,3000.0);
 
 CREATE UNIQUE INDEX unique_user ON proveedor(nitproveedor);
 
 SELECT * FROM usuarios;
-SELECT * FROM clientes;
+SELECT * FROM proveedores;
 SELECT * FROM ventas;
 SELECT * FROM detalle_ventas;
 SELECT * FROM proveedores;
 SELECT * FROM productos;
 
 DELETE FROM usuarios WHERE cedula_usuario < 10 AND cedula_usuario > 0;
+
+DELETE from proveedores WHERE nitproveedor=100

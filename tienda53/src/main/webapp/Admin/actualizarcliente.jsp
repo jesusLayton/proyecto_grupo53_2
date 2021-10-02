@@ -35,7 +35,7 @@
 
 			<form id="registrarcliente" action="../actualizarclientes" method="post">
 			<div class="form-group">
-				<label for="cedula_cliente">Cédula</label>
+				<label for="cedula_cliente">Cedula</label>
 				<input type="text" id="cedula_cliente" readonly autocomplete="off" required name="cedula_cliente" class="form-control">
 			</div>
 			<div class="form-group">
