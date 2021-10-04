@@ -13,8 +13,9 @@ public class Conexion {
 	static String usuariobd = "root";
 	//mintic
 	static String clavebd = "mintic53";
-	//127.0.0.1 == localhost
-	static String url = "jdbc:mysql://127.0.0.1/" + nombre_base_datos;
+	//127.0.0.1 == localhost (jdbc:mysql://127.0.0.1/) ó conexión a aws (tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com\n
+	static String url = "jdbc:mysql://127.0.0.1/"
+			+ "" + nombre_base_datos;
 	
 	//objeto sin inicializar de la conexión
 	Connection connection = null;
@@ -33,7 +34,7 @@ public class Conexion {
 		
 		} catch (SQLException e) {
 			//error de la base de datos
-			clavebd = "mintic";
+			clavebd = "minticroca";
 			try {
 				// obtenemos el driver de para mysql
 				Class.forName("com.mysql.cj.jdbc.Driver");

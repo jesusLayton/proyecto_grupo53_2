@@ -32,10 +32,10 @@
 				role="alert">Proveedor ya se encuentra registrado</div>
 
 				
-		<form id="registrarproveedor" action="../registrarproveedor" method="post">
+		<form id="registrarproveedor" action="../registrarProveedor" method="post">
 			<div class="form-group">
-				<label for="nitproveedor">Nit</label>
-				<input type="text" autocomplete="off" required name="nitproveedor" class="form-control">
+				<label for="nit_proveedor">Nit</label>
+				<input type="text" autocomplete="off" required name="nit_proveedor" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="nombre_proveedor">Nombre</label>

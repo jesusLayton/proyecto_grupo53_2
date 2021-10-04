@@ -25,14 +25,22 @@
 
 <!-- CODE HERE -->
 	
-	<!-- contenido  -->
+	<!-- contenido  
 	
 	<div class="pb-3 pr-3 d-flex justify-content-end">
-		 <a href="nuevoProducto.jsp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		 <a href="producto.jsp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
 		 <i class="fas fa-download fa-sm text-white-50"></i> Nuevo Producto</a>
 		
 	</div>
+	-->
 	
+	<div class="pb-3 pr-3 d-flex justify-content-end">
+		 <a href="cargarProductos.jsp" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		 <i class="fas fa-download fa-sm text-white-50"></i> Cargar Productos</a>
+		
+	</div>
+	
+	<!-- 
 	<div id="delete" class="d-none alert alert-danger" role="alert">
 		Producto eliminado correctamente
 	  </div>
@@ -45,6 +53,8 @@
 		Producto modificado correctamente
 	  </div>
 	
+	 -->
+	
 	<!--  Aqui es donde se autogenera la tabla basado en el script -->
 	<div class="col align-self-center">
 		<table class='data-table table stripe hover nowrap'>
@@ -56,8 +66,7 @@
 					<th>Precio de Compra</th>
 					<th>Iva Compra</th>
 					<th>Precio de Venta</th>
-					<th class='datatable-nosort'>Editar</th>
-					<th class='datatable-nosort'>Eliminar</th>
+					
 				</tr>
 			</thead>
 			<tbody id="productosinfo">
@@ -87,8 +96,7 @@
 						+ "</td><td>" + productos[i].precio_compra 
 						+ "</td><td>" + productos[i].iva_compra
 						+ "</td><td>" + productos[i].precio_venta + "</td>"
-						+ "<td><a href='actualizarProducto.jsp?codigo=" + productos[i].codigo_producto + "'><i class='fas fa-pen'></i></a></td>"
-						+ "<td><a onclick='eliminar(" + productos[i].codigo_producto + ")'><i class='fas fa-trash'></i></a></td></tr>";
+						
 				}
 				document.getElementById("productosinfo").innerHTML = main;
 			}
@@ -96,6 +104,7 @@
 		xmlhttp.send();
 	}
 	
+	<!-- 
 	function eliminar(codigo){
 		if(confirm("Seguro que desea eliminar el producto con código: " + codigo + "?")){
 			window.location.replace("http://localhost:8080/eliminarProducto/" + codigo);
@@ -123,6 +132,7 @@
 	if (getVar == 1){
 		document.getElementById("update").classList.remove("d-none")
 	} 
+	 -->
 </script>
 	
 </div>

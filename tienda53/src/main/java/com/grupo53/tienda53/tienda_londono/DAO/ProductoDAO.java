@@ -266,7 +266,7 @@ public class ProductoDAO {
 
 	}
 
-	public boolean eliminarTodoProducto(Integer codigo_producto) {
+	public void eliminarTodoProducto() {
 		//instancia de la conexión
 		Conexion conex = new Conexion();
 		
@@ -287,15 +287,12 @@ public class ProductoDAO {
 			consulta.close();
 			conex.desconectar();
 			
-			return true;
-			
 		} catch (SQLException e) {
 			//si hay error en el SQL mostrarlo
 			System.out.println("-----------------  ERROR  -----------------");
 			System.out.println("No se pudo eliminar todos los productos");
 			System.out.println(e.getMessage());
 			System.out.println(e.getErrorCode());
-			return false;
 			
 		} catch (Exception e) {
 			//si hay cualquier otro error mostrarlo
@@ -304,7 +301,6 @@ public class ProductoDAO {
 			System.out.println("No se pudo eliminar todos los productos");
 			System.out.println(e.getMessage());
 			System.out.println(e.getLocalizedMessage());
-			return false;
 		}
 	}
 }
