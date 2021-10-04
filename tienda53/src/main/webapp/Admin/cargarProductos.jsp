@@ -1,0 +1,119 @@
+	<%@include  file="includes/header.jsp" %>
+<body id="page-top">
+	
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+<%@include  file="includes/sidebar.html" %>
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+<%@include  file="includes/topbar.jsp" %>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+<div class="text-center"> 
+
+<div class="text-center"> 
+	<div class="mb-5"> 
+		<h1>CARGAR PRODUCTOS</h1>
+		<hr>
+	</div>
+
+<!-- CODE HERE -->
+
+<div class="d-flex justify-content-center mb-5">
+	<div class="col-5"> 
+	
+	<!-- <div id="error" class="d-none alert alert-danger"
+				role="alert">Producto ya se encuentra registrado</div>
+				
+	-->
+
+				
+		<form id="eliminarTodoProducto" action="../eliminarTodoProducto" method = "delete">
+			<div class="form-group">
+				<label for="codigo_producto">Cargar archivo de productos (.csv)</label>
+				
+		
+			</div>
+						
+					
+			<div class="form-group mt-3">
+				<input type="file" accept = ".csv" value="Seleccionar Archivo" required class="btn btn-primary form-control">
+				
+			</div>
+			
+			<div class="form-group mt-3">
+				<input type="submit" value="Cargar Archivo" class="btn btn-primary form-control" onClick = "cargarArchivo">
+			</div>
+		</form>
+			
+	</div>		
+</div>
+
+<script>
+function cargarArchivo() {
+	
+
+	try {
+		var csvFile = document.getElementById("archivo");
+		
+		var input = csvFile.files[0];
+		var reader = new FileReader();
+		
+		reader.onload = function(e) {
+			
+			var text = e.target.result;
+			var arrayLineas = text.split("\n");
+			
+			var xhr = new XMLHttpRequest();
+			xhr.open("DELETE", "http://localhost:8080/eliminarTodoProducto", true);
+			xhr.send();
+			
+	
+			
+			for (var i = 0; i < arrayLineas.length; i+=1) {
+				var arraydatos = arrayLineas[i].split(",");
+				
+				if (arrayLineas[i] == "") {
+					continue
+				}
+				
+			for (var j = 0; j < arraydatos.length; j += 1) {
+				console.log (i + " " + j + "->" + arraydatos[j]);
+			}
+			
+			var formData = new FormData();
+			formData.append("codigo_producto", arraydatos[0]);
+			formData.append("nombre_producto", arraydatos[1]);
+			formData.append("nit_proveedor", arraydatos[2]);
+			formData.append("precio_compra", arraydatos[3]);
+			formData.append("iva_compra", arraydatos[4]);
+			formData.append("precio_venta", arraydatos[5]);
+			
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "http://localhost:8080/registrarProducto");
+			
+			xhr.send(formData);
+			}
+		}
+	}
+
+}
+
+</script>
+
+<!-- END CODE HERE -->
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+<%@include  file="includes/footer.html" %>           

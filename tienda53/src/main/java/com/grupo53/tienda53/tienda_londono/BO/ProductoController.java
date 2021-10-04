@@ -2,6 +2,7 @@ package com.grupo53.tienda53.tienda_londono.BO;
 
 import java.util.ArrayList;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,6 +60,12 @@ public class ProductoController {
 			return new ModelAndView("redirect:" + "/Admin/producto.jsp?update=1");
 		else
 			return new ModelAndView("redirect:" + "/Admin/actualizarProducto.jsp?error=1&codigo=" + codigo_producto.getCodigo_producto());
+	}
+	
+	@DeleteMapping("eliminarTodoProducto")
+	public void eliminarTodoProducto(){
+		ProductoDAO Dao = new ProductoDAO();
+		Dao.eliminarTodoProducto();
 	}
 
 }
