@@ -19,8 +19,6 @@ INSERT INTO usuarios VALUES(44444444,'eduardo.londono@tienda_londono.com','Eduar
 
 CREATE UNIQUE INDEX unique_user ON usuarios(cedula_usuario);
 
-DELETE FROM usuarios WHERE cedula_usuario = 55555555;
-
 CREATE TABLE clientes (
 cedula_cliente BIGINT(20) PRIMARY KEY,
 direccion_cliente VARCHAR (255) NOT NULL,
@@ -80,7 +78,7 @@ INSERT INTO proveedores VALUES(107,'Av 9 # 8 -78','proveedor3@proveedor.com','pr
 INSERT INTO proveedores VALUES(108,'Av 6 # 8 -25','proveedor4@proveedor.com','proveedor 4','2458678');
 INSERT INTO proveedores VALUES(109,'Cra 10 # 20 -340','proveedor5@proveedor.com','proveedor 5','6447515');
 
-CREATE UNIQUE INDEX unique_user ON proveedor(nitproveedor);
+CREATE UNIQUE INDEX unique_user ON proveedor(nit_proveedor);
 
 CREATE TABLE productos (
 codigo_producto BIGINT(20) PRIMARY KEY,
@@ -89,28 +87,25 @@ nit_proveedor BIGINT(20) NOT NULL,
 nombre_producto VARCHAR(255) NOT NULL,
 precio_compra DOUBLE NOT NULL,
 precio_venta DOUBLE NOT NULL,
-FOREIGN KEY (nitproveedor) REFERENCES proveedores(nitproveedor)
+FOREIGN KEY (nit_proveedor) REFERENCES proveedores(nit_proveedor)
 );
 
-INSERT INTO productos VALUES(201,0.19,100,'Leche Descremada',2000.0,3000.0);
-INSERT INTO productos VALUES(202,0.19,100,'Azucar',2000.0,3000.0);
-INSERT INTO productos VALUES(203,0.19,100,'Mantequilla',2000.0,3000.0);
-INSERT INTO productos VALUES(204,0.19,100,'Pan',2000.0,3000.0);
-INSERT INTO productos VALUES(205,0.19,100,'Harina',2000.0,3000.0);
-INSERT INTO productos VALUES(206,0.19,100,'Huevos',2000.0,3000.0);
-INSERT INTO productos VALUES(207,0.19,100,'Tomate',2000.0,3000.0);
-INSERT INTO productos VALUES(208,0.19,100,'Cebolla',2000.0,3000.0);
-
-
-CREATE UNIQUE INDEX unique_user ON proveedor(nitproveedor);
+INSERT INTO productos VALUES(201,0.19,100,'Leche',2000.0,3000.0);
+INSERT INTO productos VALUES(202,0.19,102,'Huevos',2000.0,3000.0);
+INSERT INTO productos VALUES(203,0.19,103,'Pan',2000.0,3000.0);
+INSERT INTO productos VALUES(204,0.19,104,'Harina',2000.0,3000.0);
+INSERT INTO productos VALUES(205,0.19,100,'Mantequilla',2000.0,3000.0);
+INSERT INTO productos VALUES(206,0.19,100,'Tomate',2000.0,3000.0);
+INSERT INTO productos VALUES(207,0.19,103,'Azucar',2000.0,3000.0);
+INSERT INTO productos VALUES(208,0.19,103,'Sal',2000.0,3000.0);
+INSERT INTO productos VALUES(209,0.19,104,'Cebolla',2000.0,3000.0);
 
 SELECT * FROM usuarios;
-SELECT * FROM proveedores;
 SELECT * FROM ventas;
 SELECT * FROM detalle_ventas;
 SELECT * FROM proveedores;
 SELECT * FROM productos;
 
 DELETE FROM usuarios WHERE cedula_usuario < 10 AND cedula_usuario > 0;
-
-DELETE from proveedores WHERE nitproveedor=100
+DELETE FROM usuarios WHERE cedula_usuario = 55555555;
+DELETE from proveedores WHERE nit_proveedor=100

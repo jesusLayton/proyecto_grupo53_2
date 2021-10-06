@@ -1,4 +1,4 @@
-	<%@include  file="includes/header.jsp" %>
+<%@include  file="includes/header.jsp" %>
 <body id="page-top">
 	
 <!-- Page Wrapper -->
@@ -34,21 +34,20 @@
 	-->
 
 				
-		<form id="eliminarTodoProducto" action="../eliminarTodoProducto" method = "delete">
-			<div class="form-group">
-				<label for="codigo_producto">Cargar archivo de productos (.csv)</label>
-				
-		
-			</div>
+		<form>
+			
 						
 					
 			<div class="form-group mt-3">
-				<input type="file" accept = ".csv" value="Seleccionar Archivo" required class="btn btn-primary form-control">
+				<input id = "archivo" type="file" accept = ".csv" value="Seleccionar Archivo" required class="btn btn-primary form-control">
 				
 			</div>
 			
 			<div class="form-group mt-3">
-				<input type="submit" value="Cargar Archivo" class="btn btn-primary form-control" onClick = "cargarArchivo">
+				<button class="btn btn-primary form-control" onclick = "cargarArchivo()">Cargar Archivo</button>
+			</div>
+			<div class="form-group">
+				<label for="codigo_producto">Solo admite archivo .csv</label>
 			</div>
 		</form>
 			
@@ -56,36 +55,42 @@
 </div>
 
 <script>
-function cargarArchivo() {
+	function cargarArchivo() {
 	
+	var csvFile = document.getElementById("archivo");
+	
+	
+	
+	var input = csvFile.files[0];
+	var reader = new FileReader();
+			
+	reader.onload = async function(e) {
+		
+		var text = e.target.result;
+		var arrayLineas = text.split("\n");
+		
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "http://localhost:8080/eliminarTodoProducto", true);
+		xhr.send();
 
-	try {
-		var csvFile = document.getElementById("archivo");
+		alert("Datos Eliminados");
 		
-		var input = csvFile.files[0];
-		var reader = new FileReader();
+		for (var i = 0; i < arrayLineas.length; i+=1) {
+			
+
+			
+			var arraydatos = arrayLineas[i].split(",");
+			
+			if (arrayLineas[i] == "") {
+				continue
+			}
 		
-		reader.onload = function(e) {
 			
-			var text = e.target.result;
-			var arrayLineas = text.split("\n");
-			
-			var xhr = new XMLHttpRequest();
-			xhr.open("DELETE", "http://localhost:8080/eliminarTodoProducto", true);
-			xhr.send();
-			
-	
-			
-			for (var i = 0; i < arrayLineas.length; i+=1) {
-				var arraydatos = arrayLineas[i].split(",");
-				
-				if (arrayLineas[i] == "") {
-					continue
-				}
-				
 			for (var j = 0; j < arraydatos.length; j += 1) {
 				console.log (i + " " + j + "->" + arraydatos[j]);
 			}
+		
+			<!--alert(arraydatos[1]);-->
 			
 			var formData = new FormData();
 			formData.append("codigo_producto", arraydatos[0]);
@@ -99,12 +104,16 @@ function cargarArchivo() {
 			xhr.open("POST", "http://localhost:8080/registrarProducto");
 			
 			xhr.send(formData);
-			}
+			
+			
 		}
+		<!--alert(arrayLineas.length);-->
 	}
 
-}
+	reader.readAsText(input);
 
+}
+		
 </script>
 
 <!-- END CODE HERE -->
