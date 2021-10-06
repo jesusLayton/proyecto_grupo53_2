@@ -25,12 +25,12 @@ public class ProductoDAO {
 			
 			//String que contiene la sentencia insert a ejecutar
 			String sentencia = "INSERT INTO productos VALUES(" 
-					+ user.getCodigo_producto() + "," + "'"
-					+ user.getIva_compra() + "'," + "'" 
-					+ user.getNit_proveedor() + "'," + "'" 
-					+ user.getNombre_producto()+ "'," + "'" 
-					+ user.getPrecio_compra() + "'," + "'"
-					+ user.getPrecio_venta() + "'"
+					+ user.getCodigo_producto() + "," + ""
+					+ user.getIva_compra() + "," + "" 
+					+ user.getNit_proveedor() + "," + "'" 
+					+ user.getNombre_producto()+ "'," + "" 
+					+ user.getPrecio_compra() + "," + ""
+					+ user.getPrecio_venta() + ""
 					+ ");";
 			
 			System.out.println(sentencia);
@@ -38,7 +38,6 @@ public class ProductoDAO {
 			//se ejecuta la sentencia en la base de datos
 			estatuto.executeUpdate(sentencia);
 			//impresión en consola para verificación 
-			System.out.println("Registrado " + sentencia);
 			//cerrando la sentencia y la conexión
 			estatuto.close();
 			conex.desconectar();
@@ -278,7 +277,7 @@ public class ProductoDAO {
 			String sentencia = "DELETE FROM productos";
 			
 			//impresion de verificacion
-			System.out.println("Registrado " + sentencia);
+			System.out.println(sentencia);
 			
 			//ejecutando la sentencia en la base de datos
 			consulta.execute(sentencia);

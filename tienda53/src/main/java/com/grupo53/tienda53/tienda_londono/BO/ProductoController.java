@@ -23,12 +23,9 @@ public class ProductoController {
 	 * */
 	
 	@PostMapping("/registrarProducto")
-	public ModelAndView registrarProducto(ProductoVO codigo) {
+	public void registrarProducto(ProductoVO producto) {
 		ProductoDAO Dao = new ProductoDAO();
-		if (Dao.registrarProducto(codigo))
-			return new ModelAndView("redirect:" + "/Admin/producto.jsp?create=1");
-		else 
-			return new ModelAndView("redirect:" + "/Admin/nuevoProducto.jsp?error=1");
+		Dao.registrarProducto(producto);
 	}
 	
 	@GetMapping("/consultarProducto/{codigo}")
@@ -62,7 +59,7 @@ public class ProductoController {
 			return new ModelAndView("redirect:" + "/Admin/actualizarProducto.jsp?error=1&codigo=" + codigo_producto.getCodigo_producto());
 	}
 	
-	@DeleteMapping("eliminarTodoProducto")
+	@PostMapping("/eliminarTodoProducto")
 	public void eliminarTodoProducto(){
 		ProductoDAO Dao = new ProductoDAO();
 		Dao.eliminarTodoProducto();
