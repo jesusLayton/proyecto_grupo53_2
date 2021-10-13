@@ -66,12 +66,15 @@
 	<script>
 		var nit = getParameterByName('nit');
 		
-		var baseurl = "http://localhost:8080/consultarProveedor/" + nit;
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+ getUrl.host + "/";
+		
+		//var baseurl = "http://localhost:8080/consultarProveedor/" + nit;
 		loadProveedores();
 
 		function loadProveedores() {		
 			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.open("GET", baseurl, true);
+			xmlhttp.open("GET", baseUrl + "/consultarProveedor/" + nit , true);
 			xmlhttp.onreadystatechange = function() {
 				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 					var proveedor = JSON.parse(xmlhttp.responseText);
