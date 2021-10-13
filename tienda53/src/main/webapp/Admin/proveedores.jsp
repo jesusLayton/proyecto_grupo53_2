@@ -72,11 +72,14 @@
 	</div>
 	
 <script>
-	var baseurl = "http://localhost:8080/listarProveedores";
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//"+ getUrl.host + "/";
+
+	//var baseurl = "http://localhost:8080/listarProveedores";
 	loadproveedores();
 	function loadproveedores() {
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", baseurl, true);
+		xmlhttp.open("GET", baseUrl + "listarProveedores", true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var proveedores = JSON.parse(xmlhttp.responseText);
@@ -98,7 +101,7 @@
 	
 	function eliminar(nit){
 		if(confirm("Seguro que desea eliminar el proveedor con Nit: " + nit + "?")){
-			window.location.replace("http://localhost:8080/eliminarProveedor/" + nit);
+			window.location.replace(baseUrl + "/eliminarProveedor/" + nit);
 		}
 	}
 		

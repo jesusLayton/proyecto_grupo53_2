@@ -53,7 +53,7 @@
 		<table id="tabla" class='data-table table stripe hover nowrap'>
 			<thead>
 				<tr>
-					<th class='table-plus'>Cedula</th>
+					<th class='table-plus'>Nit</th>
 					<th>Nombre</th>
 					<th>Dirección</th>
 					<th>Email</th>
@@ -69,12 +69,15 @@
 	</div>
 	
 <script>
-	var baseurl = "http://localhost:8080/listarclientes";
+var getUrl = window.location;
+var baseUrl = getUrl.protocol + "//"+ getUrl.host + "/";
+
+
 	 loadClientes();
 
 	 function loadClientes() {
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", baseurl, true);
+		xmlhttp.open("GET", baseUrl + 'listarclientes', true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var clientes = JSON.parse(xmlhttp.responseText);
@@ -96,7 +99,7 @@
 	
 	function eliminar(cedula){
 		if(confirm("Seguro que desea eliminar el cliente con cedula: " + cedula + "?")){
-			window.location.replace("http://localhost:8080/eliminarcliente/" + cedula);
+			window.location.replace(baseUrl + "eliminarcliente/" + cedula);
 		}
 	}
 		

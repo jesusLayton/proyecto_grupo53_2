@@ -35,7 +35,7 @@
 
 			<form id="registrarcliente" action="../actualizarclientes" method="post">
 			<div class="form-group">
-				<label for="cedula_cliente">Cedula</label>
+				<label for="cedula_cliente">Nit</label>
 				<input type="text" id="cedula_cliente" readonly autocomplete="off" required name="cedula_cliente" class="form-control">
 			</div>
 			<div class="form-group">
@@ -66,12 +66,18 @@
 	<script>
 		var cedula = getParameterByName('cedula');
 		
-		var baseurl = "http://localhost:8080/consultarcliente/" + cedula;
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+ getUrl.host + "/";
+		
+		
 		loadClientes();
 
 		function loadClientes() {
 			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.open("GET", baseurl, true);
+			xmlhttp.open("GET", baseUrl + "/consultarcliente/" + cedula, true);
+			
+			alert(baseUrl + "/consultarcliente/" + cedula);
+			
 			xmlhttp.onreadystatechange = function() {
 				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 					var cliente = JSON.parse(xmlhttp.responseText);

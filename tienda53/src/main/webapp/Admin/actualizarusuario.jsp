@@ -68,12 +68,20 @@
 	<script>
 		var cedula = getParameterByName('cedula');
 		
-		var baseurl = "http://localhost:8080/consultarUsuario/" + cedula;
+		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+ getUrl.host + "/"+ 'consultarUsuario/' + cedula;
+		
+		
+		//var baseUrl = "http://localhost:8080/consultarUsuario/" + cedula;
+		
 		loadClientes();
 
 		function loadClientes() {
 			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.open("GET", baseurl, true);
+			xmlhttp.open("GET", baseUrl, true);
+			
+						
 			xmlhttp.onreadystatechange = function() {
 				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 					var usuario = JSON.parse(xmlhttp.responseText);

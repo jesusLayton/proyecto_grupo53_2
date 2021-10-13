@@ -67,11 +67,12 @@
 	
 	
 <script>
-	var baseurl = "http://localhost:8080/listarUsuarios";
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//"+ getUrl.host + "/";
 	loadusuarios();
 	function loadusuarios() {
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", baseurl, true);
+		xmlhttp.open("GET", baseUrl + 'listarUsuarios', true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 				var usuarios = JSON.parse(xmlhttp.responseText);
@@ -93,7 +94,7 @@
 
 	function eliminar(cedula){
 		if(confirm("Seguro que desea eliminar el usuario con cedula: " + cedula + "?")){
-			window.location.replace("http://localhost:8080/eliminarUsuario/" + cedula);
+			window.location.replace(baseUrl + 'eliminarUsuario/' + cedula);
 		}
 	}
 	

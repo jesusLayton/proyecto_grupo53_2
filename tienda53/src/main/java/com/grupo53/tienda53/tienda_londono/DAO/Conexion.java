@@ -15,7 +15,8 @@ public class Conexion {
 	//mintic
 	static String clavebd = "minticroca";
 	//127.0.0.1 == localhost (jdbc:mysql://127.0.0.1/) ó conexión a aws (jdbc:mysql://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/
-	static String url = "jdbc:mysql://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/" + nombre_base_datos;
+	
+	//static String url = "jdbc:mysql://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/" + nombre_base_datos;
 	/*
 	static String nombre_base_datos = "tienda_londono";
 	//root
@@ -27,13 +28,19 @@ public class Conexion {
 	
 	*/
 	
+	static String url= "jdbc:mariadb://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/" + nombre_base_datos;
+
 	//objeto sin inicializar de la conexión
 	Connection connection = null;
 	/** Constructor de DbConnection */
 	public Conexion() {
 		try {
 			// obtenemos el driver para mysql
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			//Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Class.forName("org.mariadb.jdbc.Driver");
+
 			// obtenemos la conexión
 			connection = DriverManager.getConnection(url, usuariobd, clavebd);
 			//si hay conexión correcta mostrar información en consola
@@ -47,7 +54,11 @@ public class Conexion {
 			clavebd = "mintic";
 			try {
 				// obtenemos el driver de para mysql
-				Class.forName("com.mysql.cj.jdbc.Driver");
+				
+				//Class.forName("com.mysql.cj.jdbc.Driver");
+				
+				Class.forName("org.mariadb.jdbc.Driver");
+				
 				// obtenemos la conexión
 				connection = DriverManager.getConnection(url, usuariobd, clavebd);
 				//si hay conexión correcta mostrar información en consola
