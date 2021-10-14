@@ -80,6 +80,7 @@
 	var baseurl = "http://localhost:8080/listarProductos";
 	loadproductos();
 	function loadproductos() {
+		
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", baseurl, true);
 		xmlhttp.onreadystatechange = function() {
@@ -96,11 +97,13 @@
 						+ "</td><td>" + productos[i].precio_compra 
 						+ "</td><td>" + productos[i].iva_compra
 						+ "</td><td>" + productos[i].precio_venta + "</td>"
-						
+			
 				}
+				
 				document.getElementById("productosinfo").innerHTML = main;
 			}
-		};
+
+		}
 		xmlhttp.send();
 	}
 	
