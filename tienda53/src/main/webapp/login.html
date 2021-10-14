@@ -67,18 +67,23 @@
 			var x = document.getElementById("user").value;
 			//trayendo texto de input de password
 			var y = document.getElementById("pass").value;
-			//url de la api 
 			
-			//var baseurl = "http://localhost:8080/listarUsuarios";
-			var getUrl = window.location;
-			var baseUrl = getUrl.protocol + "//"+ getUrl.host + "/"+ 'listarUsuarios';
-
+			//url de la api 
+			var baseUrl = "http://localhost:8080/listarUsuarios";
+			
+			alert(baseUrl);
+			
+			
+			//var getUrl = window.location;
+			//var baseUrl = getUrl.protocol + "//"+ getUrl.host + "/" + getUrl.pathname.split('/')[1];";
+			
 			//creando un objeto de manipulacion de solicitudes
 			var xmlhttp = new XMLHttpRequest();
 			//abriendo la api
 			
 						
 			xmlhttp.open("GET", baseUrl, true);
+			
 			
 			//funcion interna que compara la información
 			xmlhttp.onreadystatechange = function() {
