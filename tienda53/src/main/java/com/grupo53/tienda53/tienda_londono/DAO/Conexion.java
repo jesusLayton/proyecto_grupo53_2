@@ -8,7 +8,7 @@ import java.sql.*;
 public class Conexion {
 	
 	
-	
+	/*
 	static String nombre_base_datos = "g53e2";
 	//root
 	static String usuariobd = "admin";
@@ -17,7 +17,7 @@ public class Conexion {
 	//127.0.0.1 == localhost (jdbc:mysql://127.0.0.1/) ó conexión a aws (jdbc:mysql://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/
 	
 	//static String url = "jdbc:mysql://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/" + nombre_base_datos;
-	/*
+	*/
 	static String nombre_base_datos = "tienda_londono";
 	//root
 	static String usuariobd = "root";
@@ -26,9 +26,9 @@ public class Conexion {
 	//127.0.0.1 == localhost (jdbc:mysql://127.0.0.1/) ó conexión a aws (jdbc:mysql://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/
 	static String url = "jdbc:mysql://127.0.0.1/" + nombre_base_datos;
 	
-	*/
+
 	
-	static String url= "jdbc:mariadb://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/" + nombre_base_datos;
+	// static String url= "jdbc:mariadb://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/" + nombre_base_datos;
 
 	//objeto sin inicializar de la conexión
 	Connection connection = null;
