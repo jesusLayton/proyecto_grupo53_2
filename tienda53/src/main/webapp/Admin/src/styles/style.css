@@ -4047,3 +4047,7 @@ body.IE .register-page-wrap .container{
 .table-actions a + a{
 	margin-left: 10px;
 }
+
+hr {
+	color: red!important;
+}

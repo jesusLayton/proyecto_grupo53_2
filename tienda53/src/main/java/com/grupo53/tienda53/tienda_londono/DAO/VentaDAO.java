@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import com.grupo53.tienda53.tienda_londono.DTO.VentaVO;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
+
 /**
  * Clase que permite el acceso a la base de datos
  *
@@ -165,10 +167,36 @@ public class VentaDAO {
 		}
 
 		return listaventas;
+	
 	}
 
+	public int contar_venta () {
+		Conexion conex = new Conexion();
 	
-
+		try {
+			PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT COUNT(codigo_venta) + 1 AS cuenta FROM ventas");
+			
+			ResultSet res = consulta.executeQuery();
+			
+			int cuenta = 0;
+			
+			while (res.next()) {
+				cuenta = res.getInt("cuenta");
+			}
+			
+			res.close();
+			consulta.close();
+			conex.desconectar();
+			
+			return cuenta;
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			
+			return 0;
+		}
+		
+	}
 	
 
 }
