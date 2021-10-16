@@ -25,199 +25,201 @@
 						</div>
 
 						<!-- CODE HERE -->
+						
+						
+					
+					<div id="error" class="alert alert-danger visually-hidden"
+							role="alert">Error al mostrar el cliente, verifique que la
+							cedula sean validos</div>
 
-						<div id="error" class="alert alert-danger visually-hidden"
-							role="alert">Error al mostrar el cliente, verifique que la cedula sean validos</div>
-							
 						<div id="correcto" class="alert alert-success visually-hidden"
 							role="alert">cliente consultado con exito</div>
 
 
-						<div class="row">
-						<div class="col-md-10"></div>
-						
-						
-							<div class="col-md-2">
-								<label for="validationCustomUsername" class="form-label">Consecutivo</label>
-								<input type="text" class="form-control text-center" id="consecutivo" aria-describedby="inputGroupPrepend" required disabled="disabled">
+						<div class="row mb-2">
+
+							<div class="col-md-6">
+								<h4>Usuario</h4>
 							</div>
-						
-						
+
+								<div class="row mb-2">
+
+									<div class="col-md-2">
+										<label for="validationCustom01" class="form-label">Documento</label>
+										<input onchange="solicitarusuario()" type="text"
+											class="form-control" id="cedula_usuario" required>
+									</div>
+
+
+									<div class="col-md-5">
+										<label for="validationCustom02" class="form-label">Nombre</label>
+										<input type="text" class="form-control" id="nombre_usuario"
+											disabled="disabled">
+									</div>
+									
+									<div class="col-md-3"></div>
+									
+								</div>
+
+								<hr>
+								<div class="col-md-6">
+								<h4>Cliente</h4>
+							</div>
 						</div>
 
-						<div class="row mb-5">
-							
+						<div class="row mb-2">
+						
 							<div class="col-md-2">
-									<label for="validationCustom01" class="form-label">Cedula</label>
-									<input onchange="solicitar()" type="text" class="form-control" id="validationCustom01" required>
+								<label for="validationCustom01" class="form-label">Documento</label>
+								<input onchange="solicitar()" type="text" class="form-control"
+									id="validationCustom01" required>
 							</div>
-												
-									
-							<div class="col-md-5">
-								<label for="validationCustom02" class="form-label">Cliente</label>
-								<input type="text" class="form-control" id="nombre_cliente" disabled="disabled">
-							</div>
-		
-						
-						</div>
-						
-						
-						<div class="row mb-5">
 							
-							<div class="col-md-2">
-									<label for="validationCustom01" class="form-label">usuario</label>
-									<input onchange="solicitarusuario()" type="text" class="form-control" id="cedula_usuario" required>
-							</div>
-												
-									
 							<div class="col-md-5">
 								<label for="validationCustom02" class="form-label">Nombre</label>
-								<input type="text" class="form-control" id="nombre_usuario" disabled="disabled">
+								<input type="text" class="form-control" id="nombre_cliente"
+									disabled="disabled">
 							</div>
-		
-						
+
 						</div>
 
-						<h4>Detalle de la Venta</h4>
 						<hr>
 
+						<h4>Detalle de la Venta</h4>
+						
+						<div class="row mb-2">
+						
+							<div class="row mb-3">
+													
+								<div class="col-md-2">
+									<label for="validationCustomUsername" class="form-label">Consecutivo</label>
+									<input type="text" class="form-control text-center"
+										id="consecutivo" aria-describedby="inputGroupPrepend" required disabled="disabled">
+								</div>
+							</div>
+						</div>
+						
 						<form class="row g-3 needs-validation" novalidate>
 						
+							<div class="col-md-2">
+								<label for="validationCustom03" class="form-label">Codigo
+									del Producto</label> <input onchange="agregar1()" type="text"
+									class="form-control" id="codigo_producto1" required>
+							</div>
 
-						<div class="col-md-2">
-							<label for="validationCustom03" class="form-label">Codigo del Producto</label>
-							<input onchange = "agregar1()" type="text" class="form-control" id="codigo_producto1" required>
-						</div>
-					
+							<div class="col-md-3">
+								<label for="validationCustom02" class="form-label">Nombre
+									del Producto</label> <input type="text" class="form-control"
+									id="nombre_producto" disabled="disabled">
+							</div>
 
-						<div class="col-md-5">
-							<label for="validationCustom02" class="form-label">Nombre del Producto</label>
-							<input type="text" class="form-control" id="nombre_producto" disabled="disabled">
-						</div>
-
-						<div class="col-md-2">
-							<label for="validationCustom02" class="form-label">Valor Unitario</label> <input type="text" class="form-control"
-								id="valorunitarioproducto" disabled="disabled">
-						</div>
-
-
-
-						<div class="col-md-1">
-							<label for="validationCustom05" class="form-label">Cantidad</label>
-							<input type="text" class="form-control" id="cantidad1" required
-								onchange="calcular()">
-
-						</div>
-
-						<div class="col-md-2">
-							<label for="validationCustom05" class="form-label">Valor
-								Total</label> <input type="text" class="form-control" id="resultado1"
-								required disabled="disabled">
-						</div>
-
-
-						<!-- esto es otra fila  -->
-
-						<div class="col-md-2">
-							<input type="text" class="form-control" id="codigo_producto2" onchange="agregar2()" required>
-						</div>
-
-
-						<div class="col-md-5">
-
-							<input type="text" class="form-control" id="nombre_producto2" disabled="disabled">
-							<div class="valid-feedback"></div>
-						</div>
-
-						<div class="col-md-2">
-
-							<input type="text" class="form-control"
-								id="valorunitarioproducto1" disabled="disabled">
-							<div class="valid-feedback"></div>
-						</div>
-
-
-						<div class="col-md-1">
-
-							<input type="text" class="form-control" id="cantidad2" required
-								onchange="calcular()">
-
-						</div>
-
-						<div class="col-md-2">
-
-							<input type="text" class="form-control" id="resultado2" required disabled="disabled">
-
-						</div>
-
-
-						<!-- esto es otra fila  -->
-
-						<div class="col-md-2">
-							<input type="text" class="form-control" id="codigo_producto3" onclick="agregar3()" required>
-						</div>
-
-						
-						<div class="col-md-5">
-
-							<input type="text" class="form-control" id="nombre_producto3" disabled="disabled">
-							<div class="valid-feedback"></div>
-						</div>
-
-						<div class="col-md-2">
-
-							<input type="text" class="form-control" id="valorunitarioproducto2" disabled="disabled">
-							<div class="valid-feedback"></div>
-						</div>
-
-
-						<div class="col-md-1">
-
-							<input type="text" class="form-control" id="cantidad3" required onchange="calcular()">
-
-						</div>
-
-						<div class="col-md-2">
-
-							<input type="text" class="form-control" id="resultado3" required disabled="disabled">
-
-						</div>
-
-
-						<!-- esto es otra fila  -->
-
-						
-						<div class="row mt-5">
-							<div class="col-md-8"></div>
-						
-							<label for="validationCustom05" class="form-label col-md-2">Sub Total Venta</label>
-							<input type="text" class="form-control col-md-2" id="resultado4" disabled="disabled">
-
-						</div>
-
-						<div class="row mt-3">
-							<div class="col-md-8"></div>
+							<div class="col-md-1">
+								<label for="validationCustom05" class="form-label">Cantidad</label>
+								<input type="text" class="form-control" id="cantidad1" required
+									onchange="calcular()">
+							</div>
 							
-							<label for="validationCustom05" class="form-label col-md-2">Total IVA</label>
-							<input type="text" class="form-control col-md-2" id="resultado5" disabled="disabled">
-
-						</div>
-
-						<div class="row mt-3">
-							<hr>
-							<div class="col-md-8"></div>
+							<div class="col-md-2">
+								<label for="validationCustom02" class="form-label">Valor Unitario</label> <input type="text" class="form-control"
+									id="valorunitarioproducto" disabled="disabled">
+							</div>
 							
-							<label for="validationCustom05" class="form-label col-md-2">TOTAL VENTA</label>
-							<input type="text" class="form-control col-md-2" id="resultado6" disabled="disabled">
-						</div>
-						
-						<div class="col-ms-2">
-							<div class="col-md-10"></div>
-						
-							<button class="btn btn-primary col-md-2" type="submit" onclick="registrar()">Registrar Venta</button>
-						</div>
+							<div class="col-md-2">
+								<label for="validationCustom02" class="form-label">Valor Iva</label>
+								<input type="text" class="form-control" id="iva_producto1" disabled="disabled">
+							</div>
 
-					</form>
+							<div class="col-md-2">
+								<label for="validationCustom05" class="form-label">Valor Total</label> <input type="text" class="form-control" id="resultado1"
+									required disabled="disabled">
+							</div>
+
+
+							<!-- esto es la fila 2 -->
+
+							<div class="col-md-2">
+								<input type="text" class="form-control" id="codigo_producto2" onchange="agregar2()" required>
+							</div>
+
+							<div class="col-md-3">
+								<input type="text" class="form-control" id="nombre_producto2" disabled="disabled">
+							</div>
+							
+							<div class="col-md-1">
+								<input type="text" class="form-control" id="cantidad2" required onchange="calcular()">
+							</div>
+
+							<div class="col-md-2">
+								<input type="text" class="form-control" id="valorunitarioproducto1" disabled="disabled">
+							</div>
+							
+							<div class="col-md-2">
+								<input type="text" class="form-control" id="iva_producto2" disabled="disabled">
+							</div>
+							
+							<div class="col-md-2">
+								<input type="text" class="form-control" id="resultado2" required disabled="disabled">
+							</div>
+
+
+							<!-- esto es la fila 3  -->
+
+							<div class="col-md-2">
+								<input type="text" class="form-control" id="codigo_producto3" onchange="agregar3()" required>
+							</div>
+
+							<div class="col-md-3">
+								<input type="text" class="form-control" id="nombre_producto3" disabled="disabled">
+							</div>
+							
+							<div class="col-md-1">
+								<input type="text" class="form-control" id="cantidad3" required onchange="calcular()">
+							</div>
+
+							<div class="col-md-2">
+								<input type="text" class="form-control" id="valorunitarioproducto2" disabled="disabled">
+							</div>
+							
+							<div class="col-md-2">
+								<input type="text" class="form-control" id="iva_producto3" disabled="disabled">
+							</div>
+
+							<div class="col-md-2">
+								<input type="text" class="form-control" id="resultado3" required disabled="disabled">
+							</div>
+
+
+							<!-- esto es otra fila  -->
+
+
+							<div class="row mt-5">
+								<div class="col-md-8"></div>
+
+								<label for="validationCustom05" class="form-label col-md-2">Sub Total Venta</label> <input type="text" class="form-control col-md-2"
+									id="resultado4" disabled="disabled">
+
+							</div>
+
+							<div class="row mt-3">
+								<div class="col-md-8"></div>
+
+								<label for="validationCustom05" class="form-label col-md-2">Total IVA</label> <input type="text" class="form-control col-md-2"
+									id="resultado5" disabled="disabled">
+							</div>
+
+							<div class="row mt-3">
+								<hr>
+								<div class="col-md-8"></div>
+								<label for="validationCustom05" class="form-label col-md-2">TOTAL VENTA</label> <input type="text" class="form-control col-md-2"
+									id="resultado6" disabled="disabled">
+							</div>
+
+							<div class="col-ms-2">
+								<div class="col-md-10"></div>
+								<button class="btn btn-primary col-md-2" type="submit" onclick="registrar()">Registrar Venta</button>
+							</div>
+
+						</form>
 
 
 					<script>
@@ -288,8 +290,9 @@
 							if (producto.toString() != "") {
 
 								document.getElementById("nombre_producto").value = producto[0].nombre_producto;
-								document
-										.getElementById("valorunitarioproducto").value = producto[0].precio_venta;
+								document.getElementById("valorunitarioproducto").value = producto[0].precio_venta;
+								document.getElementById("iva_producto1").value = producto[0].iva_compra;
+
 
 							} else {
 
@@ -331,8 +334,8 @@
 							if (producto.toString() != "") {
 
 								document.getElementById("nombre_producto2").value = producto[0].nombre_producto;
-								document
-										.getElementById("valorunitarioproducto1").value = producto[0].precio_venta;
+								document.getElementById("valorunitarioproducto1").value = producto[0].precio_venta;
+								document.getElementById("iva_producto2").value = producto[0].iva_compra;
 
 							} else {
 
@@ -376,6 +379,7 @@
 								document.getElementById("nombre_producto3").value = producto[0].nombre_producto;
 								document
 										.getElementById("valorunitarioproducto2").value = producto[0].precio_venta;
+								document.getElementById("iva_producto3").value = producto[0].iva_compra;
 
 							} else {
 
@@ -407,10 +411,20 @@
 									.getElementById("valorunitarioproducto2").value);
 							var num8 = parseInt(document
 									.getElementById("cantidad3").value);
-
-							var num3 = num1 * num2;
-							var num6 = num4 * num5;
-							var num9 = num7 * num8;
+							
+							var num10 = parseFloat(document.getElementById("iva_producto1").value);
+							var num11 =  parseFloat(document.getElementById("iva_producto2").value);
+							var num12 =  parseFloat(document.getElementById("iva_producto3").value);
+							
+							
+							
+							var num3 = (num1 * num2)+(num1 * num2 * num10);
+							var num6 = (num4 * num5)+(num4 * num5 * num11);
+							var num9 = (num7 * num8)+(num7 * num8 * num12);
+							
+							var subtotal = (num1 * num2)+(num4 * num5)+(num7 * num8);
+							var totaliva = (num1 * num2 * num10)+(num4 * num5 * num11)+(num7 * num8 * num12);
+							var totalcompra = subtotal + totaliva;
 
 							// var total = num3+num6+mum9;
 
@@ -422,14 +436,17 @@
 							document.getElementById("resultado1").value = num3;
 							document.getElementById("resultado2").value = num6;
 							document.getElementById("resultado3").value = num9;
+							document.getElementById("resultado4").value = subtotal;
+							document.getElementById("resultado5").value = totaliva;
+							document.getElementById("resultado6").value = totalcompra;
 							// document.getElementById("total").value=total;
 
 							suma();
-							iva();
+							
 						}
 
 						
-						function suma() {
+					/*	function suma() {
 							var tota1 = parseInt(document
 									.getElementById("resultado1").value);
 							var tota2 = parseInt(document
@@ -451,7 +468,7 @@
 							document.getElementById("resultado5").value = iva;
 							document.getElementById("resultado6").value = totaliva;
 							
-						}
+						}*/
 						contarVenta(); 
 						
 						function contarVenta() {
@@ -519,58 +536,14 @@
 								formData.append("cedula_cliente", document.getElementById("validationCustom01").value);
 								formData.append("cedula_usuario", document.getElementById("cedula_usuario").value);
 								formData.append("ivaventa", document.getElementById("resultado5").value);
-								formData.append("total_venta", document.getElementById("resultado3").value);
-								formData.append("valor_venta", document.getElementById("resultado5").value);
+								formData.append("total_venta", document.getElementById("resultado6").value);
+								formData.append("valor_venta", document.getElementById("resultado4").value);
 								var xhr = new XMLHttpRequest();
 								xhr.open("POST", "http://localhost:8080/registrarventa");
 								xhr.send(formData);
 
-								setTimeout(
-									function() {
-										for (i = 1; i < 4; i++) {
-											var actual = document.getElementById(("resultado" + i.toString()).value);
-											if (actual == 0) {
-												continue;
-											} else {
-												var formData2 = new FormData();
-												//formData2.append("codigo_detalle_venta", );
-												formData2.append("cantidad_producto", document.getElementById("cantidad" +
-													i.toString()).value);
-												formData2.append("codigo_producto", document
-													.getElementById("codigo_producto" +
-														i
-														.toString()).value);
-												formData2
-													.append(
-														"codigo_venta",
-														document
-														.getElementById("consecutivo").value);
-												formData2.append("valor_total", document
-													.getElementById("resultado" +
-														i.toString()).value);
-												formData2
-													.append(
-														"valor_venta",
-														document
-														.getElementById("resultado4").value);
-												formData2
-													.append(
-														"valoriva",
-														document
-														.getElementById("resultado5").value);
-												var xhr2 = new XMLHttpRequest();
-												xhr2
-													.open("POST",
-														"http://localhost:8080/registrardetalleventa");
-												xhr2.send(formData2);
-											}
-
-										}
-										var element = document.getElementById("error");
-										element.classList.add("visually-hidden");
-										var element2 = document.getElementById("correcto");
-										element2.classList.remove("visually-hidden");
-									}, 1500);
+								
+								
 
 							} catch (error) {
 								var element = document.getElementById("error");
@@ -578,8 +551,68 @@
 								var element2 = document.getElementById("correcto");
 								element2.classList.add("visually-hidden");
 							}
+							
+							registrardetalleventa()
 
 						}
+						
+						
+						
+						
+								function registrardetalleventa() {
+									
+								
+									
+									
+									for (i = 1; i < 4; i++) {
+										var actual = document.getElementById(("resultado" + i.toString()).value);
+										if (actual == 0) {
+											continue;
+										} else {
+											var formData2 = new FormData();
+											
+											
+											
+											formData2.append("codigo_detalle_venta", document.getElementById("consecutivo").value);
+											
+											formData2.append("cantidad_producto", document.getElementById("cantidad" +
+												i.toString()).value);
+											formData2.append("codigo_producto", document
+												.getElementById("codigo_producto" +
+													i
+													.toString()).value);
+											formData2
+												.append(
+													"codigo_venta",
+													document
+													.getElementById("consecutivo").value);
+											formData2.append("valor_total", document
+												.getElementById("resultado" +
+													i.toString()).value);
+											formData2
+												.append(
+													"valor_venta",
+													document
+													.getElementById("resultado4").value);
+											formData2
+												.append(
+													"valor_iva",
+													document
+													.getElementById("resultado5").value);
+											var xhr2 = new XMLHttpRequest();
+											xhr2
+												.open("POST",
+													"http://localhost:8080/registrardetalleventa");
+											xhr2.send(formData2);
+										}
+
+									}
+									
+									var element = document.getElementById("error");
+									element.classList.add("visually-hidden");
+									var element2 = document.getElementById("correcto");
+									element2.classList.remove("visually-hidden");
+								}
 						
 						
 					
