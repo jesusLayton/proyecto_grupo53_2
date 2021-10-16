@@ -22,7 +22,7 @@ public class Conexion {
 	//root
 	static String usuariobd = "root";
 	//mintic
-	static String clavebd = "mintic53";
+	static String clavebd = "mintic";
 	//127.0.0.1 == localhost (jdbc:mysql://127.0.0.1/) ó conexión a aws (jdbc:mysql://tiendasgenericasdr-g9-g38-53.czo3ixoe3xoe.us-east-1.rds.amazonaws.com/
 	static String url = "jdbc:mysql://127.0.0.1/" + nombre_base_datos;
 	
