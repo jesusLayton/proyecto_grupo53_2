@@ -29,32 +29,26 @@ public class VentaController {
 		Dao.registrarVenta(user);
 	}
 	
-	/*
-
-	@GetMapping("/consultarventa")
-	public ArrayList<VentaVO> consultarVentas(Integer consecutivo) {
-		VentaDAO Dao = new ventaDAO();
-		return Dao.consultarVenta(consecutivo);
-	}
-
-	@GetMapping("/listarventa")
-	public ArrayList<VentaVO> listaDeClientes() {
-		ClienteDAO Dao = new ClienteDAO();
-		return Dao.listaDeClientes();
-	}
 	
+	
+	@GetMapping("/listarventas")
+	public ArrayList<VentaVO> listaDeVentas() {
+		VentaDAO Dao = new VentaDAO();
+		return Dao.listaDeVentas();
+	}
+
 	@DeleteMapping("/eliminarventa")
-	public void eliminarVenta(Integer consecutivo) {
+	public void eliminarVenta(Integer codigo_venta) {
 		VentaDAO Dao = new VentaDAO();
-		Dao.eliminarVenta(consecutivo);
+		Dao.eliminarVenta(codigo_venta);
+	}
+
+	@PutMapping("/actualizarventa")
+	public void actualizarVenta(VentaVO venta) {
+		VentaDAO Dao = new VentaDAO();
+		Dao.actualizarVenta(venta);
 	}
 	
-	@PutMapping("/actualizarventa")
-	public void actualizarVenta(VentaVO user) {
-		VentaDAO Dao = new VentaDAO();
-		Dao.actualizarVenta(user);
-	}
-	*/
 
 	@GetMapping("/contarventas")
 	public int contarventas() {
