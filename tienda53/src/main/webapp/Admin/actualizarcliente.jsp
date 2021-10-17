@@ -76,8 +76,6 @@
 			var xmlhttp = new XMLHttpRequest();
 			xmlhttp.open("GET", baseUrl + "/consultarcliente/" + cedula, true);
 			
-			alert(baseUrl + "/consultarcliente/" + cedula);
-			
 			xmlhttp.onreadystatechange = function() {
 				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 					var cliente = JSON.parse(xmlhttp.responseText);

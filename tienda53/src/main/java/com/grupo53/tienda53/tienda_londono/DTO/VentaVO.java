@@ -10,7 +10,7 @@ public class VentaVO implements Serializable {
 			private Integer codigo_venta;
 			private Integer cedula_cliente;
 			private Integer cedula_usuario;
-			private Double ivaventa;
+			private Double iva_venta;
 			private Double total_venta;
 			private Double valor_venta;
 			
@@ -33,11 +33,11 @@ public class VentaVO implements Serializable {
 			public void setCedula_usuario(Integer cedula_usuario) {
 				this.cedula_usuario = cedula_usuario;
 			}
-			public Double getIvaventa() {
-				return ivaventa;
+			public Double getIva_venta() {
+				return iva_venta;
 			}
-			public void setIvaventa(Double ivaventa) {
-				this.ivaventa = ivaventa;
+			public void setIva_venta(Double ivaventa) {
+				this.iva_venta = ivaventa;
 			}
 			public Double getTotal_venta() {
 				return total_venta;
