@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS tienda_londono;
+CREATE DATABASE IF NOT EXISTS g53e2;
 
 USE tienda_londono;
 USE g53e2;
@@ -8,8 +9,7 @@ cedula_usuario BIGINT(20) PRIMARY KEY,
 email_usuario VARCHAR (255) NOT NULL,
 nombre_usuario VARCHAR (255) NOT NULL,
 password VARCHAR(255) NOT NULL,
-usuario VARCHAR(255) NOT NULL,
-FOREIGN KEY (cedula_usuario) REFERENCES ventas(cedula_usuario)
+usuario VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE clientes (
@@ -17,8 +17,7 @@ cedula_cliente BIGINT(20) PRIMARY KEY,
 direccion_cliente VARCHAR (255) NOT NULL,
 email_cliente VARCHAR (255) NOT NULL,
 nombre_cliente VARCHAR(255) NOT NULL,
-telefono_cliente VARCHAR(255) NOT NULL,
-FOREIGN KEY (cedula_cliente) REFERENCES ventas(cedula_cliente)
+telefono_cliente VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE proveedores (
@@ -36,29 +35,32 @@ nit_proveedor BIGINT(20) NOT NULL,
 nombre_producto VARCHAR(255) NOT NULL,
 precio_compra DOUBLE NOT NULL,
 precio_venta DOUBLE NOT NULL,
-FOREIGN KEY (nit_proveedor) REFERENCES proveedores(nit_proveedor),
-FOREIGN KEY (codigo_producto) REFERENCES detalle_ventas(codigo_producto)
+FOREIGN KEY (nit_proveedor) REFERENCES proveedores(nit_proveedor)
 );
 
 CREATE TABLE ventas (
-codigo_venta BIGINT(20) PRIMARY KEY,
+codigo_venta BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 cedula_cliente BIGINT(20) NOT NULL,
 cedula_usuario BIGINT(20) NOT NULL,
 iva_venta DOUBLE NOT NULL,
 total_venta DOUBLE NOT NULL,
 valor_venta DOUBLE NOT NULL,
-FOREIGN KEY (codigo_venta) REFERENCES detalle_ventas(codigo_detalle_venta)
+FOREIGN KEY (cedula_cliente) REFERENCES clientes(cedula_cliente),
+FOREIGN KEY (cedula_usuario) REFERENCES usuarios(cedula_usuario)
 );
 
 CREATE TABLE detalle_ventas (
-codigo_detalle_venta BIGINT(20) PRIMARY KEY,
+codigo_detalle_venta BIGINT(20),
 cantidad_producto INT(11) NOT NULL,
 codigo_producto BIGINT(20) NOT NULL,
 codigo_venta BIGINT NOT NULL,
-valor_total DOUBLE NOT NULL,
-valor_venta DOUBLE NOT NULL,
-valor_iva DOUBLE NOT NULL
+valor_total DOUBLE,
+valor_venta DOUBLE,
+valor_iva DOUBLE,
+FOREIGN KEY (codigo_producto) REFERENCES productos(codigo_producto),
+FOREIGN KEY (codigo_venta) REFERENCES ventas(codigo_venta)
 );
+
 
 INSERT INTO usuarios VALUES(00000000,'admin@tienda_londono.com','Administrador','admin','administrador');
 INSERT INTO usuarios VALUES(66666666,'pablo.londono@tienda_londono.com','Pablo Londoño','123456','plondono2');
@@ -89,12 +91,14 @@ INSERT INTO proveedores VALUES(109,'Cra 10 # 20 -340','proveedor5@proveedor.com'
 
 INSERT INTO productos VALUES(201,0.19,100,'Leche Descremada',2000.0,3000.0);
 INSERT INTO productos VALUES(202,0.19,100,'Azucar',2000.0,3000.0);
-INSERT INTO productos VALUES(203,0.19,100,'Mantequilla',2000.0,3000.0);
-INSERT INTO productos VALUES(204,0.19,100,'Pan',2000.0,3000.0);
-INSERT INTO productos VALUES(205,0.19,100,'Harina',2000.0,3000.0);
-INSERT INTO productos VALUES(206,0.19,100,'Huevos',2000.0,3000.0);
-INSERT INTO productos VALUES(207,0.19,100,'Tomate',2000.0,3000.0);
-INSERT INTO productos VALUES(208,0.19,100,'Cebolla',2000.0,3000.0);
+INSERT INTO productos VALUES(203,0.19,101,'Mantequilla',2000.0,3000.0);
+INSERT INTO productos VALUES(204,0.19,101,'Pan',2000.0,3000.0);
+INSERT INTO productos VALUES(205,0.19,102,'Harina',2000.0,3000.0);
+INSERT INTO productos VALUES(206,0.19,102,'Huevos',2000.0,3000.0);
+INSERT INTO productos VALUES(207,0.19,103,'Tomate',2000.0,3000.0);
+INSERT INTO productos VALUES(208,0.19,103,'Cebolla',2000.0,3000.0);
+INSERT INTO productos VALUES(209,0,104,'Lechuga',2000.0,3000.0);
+INSERT INTO productos VALUES(210,0,104,'Zanahoria',2000.0,3000.0);
 
 
 CREATE UNIQUE INDEX unique_user ON proveedor(nit_proveedor);
@@ -108,7 +112,7 @@ SELECT * FROM usuarios;
 SELECT * FROM proveedores;
 SELECT * FROM ventas;
 SELECT * FROM detalle_ventas;
-SELECT * FROM proveedores;
+SELECT * FROM clientes;
 SELECT * FROM productos;
 
 DELETE FROM usuarios WHERE cedula_usuario < 10 AND cedula_usuario > 0;
@@ -116,5 +120,8 @@ DELETE FROM usuarios WHERE cedula_usuario < 10 AND cedula_usuario > 0;
 DELETE from proveedores WHERE nit_proveedor=100;
 
 DELETE FROM productos;
+DELETE FROM ventas;
+DELETE FROM detalle_ventas;
 
 SELECT clientes.cedula_cliente, clientes.nombre_cliente, SUM(total_venta) AS total_venta FROM ventas INNER JOIN clientes on clientes.cedula_cliente = ventas.cedula_cliente GROUP BY clientes.cedula_cliente;
+

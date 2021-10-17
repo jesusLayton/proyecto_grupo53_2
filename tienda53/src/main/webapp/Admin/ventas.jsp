@@ -223,6 +223,7 @@
 
 
 					<script>
+					
 						function solicitar() {
 
 							var req = new XMLHttpRequest();
@@ -291,7 +292,7 @@
 
 								document.getElementById("nombre_producto").value = producto[0].nombre_producto;
 								document.getElementById("valorunitarioproducto").value = producto[0].precio_venta;
-								document.getElementById("iva_producto1").value = producto[0].iva_compra;
+								/* document.getElementById("iva_producto1").value = producto[0].iva_compra; */
 
 
 							} else {
@@ -312,11 +313,8 @@
 
 							var req = new XMLHttpRequest();
 							var coincidencia = false;
-							var codigo_producto = document
-									.getElementById("codigo_producto2").value;
-							req.open('GET',
-									'http://localhost:8080/consultarProducto/'
-											+ codigo_producto, false);
+							var codigo_producto = document.getElementById("codigo_producto2").value;
+							req.open('GET','http://localhost:8080/consultarProducto/' + codigo_producto, false);
 							req.send(null);
 							var producto = null;
 							if (req.status == 200)
@@ -325,8 +323,7 @@
 
 							var element = document.getElementById("error");
 							element.classList.add("visually-hidden");
-							var element2 = document
-									.getElementById("correcto");
+							var element2 = document.getElementById("correcto");
 							element2.classList.remove("visually-hidden");
 
 							console.log(coincidencia);
@@ -335,7 +332,7 @@
 
 								document.getElementById("nombre_producto2").value = producto[0].nombre_producto;
 								document.getElementById("valorunitarioproducto1").value = producto[0].precio_venta;
-								document.getElementById("iva_producto2").value = producto[0].iva_compra;
+								/* document.getElementById("iva_producto2").value = producto[0].iva_compra; */
 
 							} else {
 
@@ -377,17 +374,14 @@
 							if (producto.toString() != "") {
 
 								document.getElementById("nombre_producto3").value = producto[0].nombre_producto;
-								document
-										.getElementById("valorunitarioproducto2").value = producto[0].precio_venta;
-								document.getElementById("iva_producto3").value = producto[0].iva_compra;
+								document.getElementById("valorunitarioproducto2").value = producto[0].precio_venta;
+								/* document.getElementById("iva_producto3").value = producto[0].iva_compra; */
 
 							} else {
 
-								var element = document
-										.getElementById("error");
+								var element = document.getElementById("error");
 								element.classList.remove("visually-hidden");
-								var element2 = document
-										.getElementById("correcto");
+								var element2 = document.getElementById("correcto");
 								element2.classList.add("visually-hidden");
 								document.getElementById("nombre_producto3").value = ";"
 
@@ -397,30 +391,99 @@
 
 
 						function calcular() {
-							var num1 = parseInt(document
-									.getElementById("valorunitarioproducto").value);
-							var num2 = parseInt(document
-									.getElementById("cantidad1").value);
+							
+							var req = new XMLHttpRequest();
+							var coincidencia = false;
+							var codigo_producto = document
+									.getElementById("codigo_producto1").value;
+							req.open('GET',
+									'http://localhost:8080/consultarProducto/'
+											+ codigo_producto, false);
+							req.send(null);
+							var producto = null;
+							if (req.status == 200)
+								producto = JSON.parse(req.responseText);
+							console.log(JSON.parse(req.responseText));
 
-							var num4 = parseInt(document
-									.getElementById("valorunitarioproducto1").value);
-							var num5 = parseInt(document
-									.getElementById("cantidad2").value);
+							var element = document.getElementById("error");
+							element.classList.add("visually-hidden");
+							var element2 = document
+									.getElementById("correcto");
+							element2.classList.remove("visually-hidden");
 
-							var num7 = parseInt(document
-									.getElementById("valorunitarioproducto2").value);
-							var num8 = parseInt(document
-									.getElementById("cantidad3").value);
+							console.log(coincidencia);
+
+							if (producto.toString() != "") {
+
+								var num10 = parseFloat(producto[0].iva_compra);
+								
+							}
 							
-							var num10 = parseFloat(document.getElementById("iva_producto1").value);
-							var num11 =  parseFloat(document.getElementById("iva_producto2").value);
-							var num12 =  parseFloat(document.getElementById("iva_producto3").value);
+							var req = new XMLHttpRequest();
+							var coincidencia = false;
+							var codigo_producto = document.getElementById("codigo_producto2").value;
+							req.open('GET','http://localhost:8080/consultarProducto/' + codigo_producto, false);
+							req.send(null);
+							var producto = null;
+							if (req.status == 200)
+								producto = JSON.parse(req.responseText);
+							console.log(JSON.parse(req.responseText));
+
+							var element = document.getElementById("error");
+							element.classList.add("visually-hidden");
+							var element2 = document.getElementById("correcto");
+							element2.classList.remove("visually-hidden");
+
+							console.log(coincidencia);
+
+							if (producto.toString() != "") {
+
+								var num11 = parseFloat(producto[0].iva_compra);
+							}
+							
+							var req = new XMLHttpRequest();
+							var coincidencia = false;
+							var codigo_producto = document.getElementById("codigo_producto3").value;
+							req.open('GET','http://localhost:8080/consultarProducto/' + codigo_producto, false);
+							req.send(null);
+							var producto = null;
+							if (req.status == 200)
+								producto = JSON.parse(req.responseText);
+							console.log(JSON.parse(req.responseText));
+
+							var element = document.getElementById("error");
+							element.classList.add("visually-hidden");
+							var element2 = document.getElementById("correcto");
+							element2.classList.remove("visually-hidden");
+
+							console.log(coincidencia);
+
+							if (producto.toString() != "") {
+
+								var num12 = parseFloat(producto[0].iva_compra);
+							}
+							
+							var num1 = parseInt(document.getElementById("valorunitarioproducto").value);
+							var num2 = parseInt(document.getElementById("cantidad1").value);
+							var iva1 = (num1 * num2 * num10);
+							document.getElementById("iva_producto1").value = iva1;
+							
+
+							var num4 = parseInt(document.getElementById("valorunitarioproducto1").value);
+							var num5 = parseInt(document.getElementById("cantidad2").value);
+
+							var num7 = parseInt(document.getElementById("valorunitarioproducto2").value);
+							var num8 = parseInt(document.getElementById("cantidad3").value);
 							
 							
+							var iva1 = (num1 * num2 * num10);
+							var iva2 = (num4 * num5 * num11);
+							var iva3 = (num7 * num8 * num12);
 							
-							var num3 = (num1 * num2)+(num1 * num2 * num10);
-							var num6 = (num4 * num5)+(num4 * num5 * num11);
-							var num9 = (num7 * num8)+(num7 * num8 * num12);
+							
+							var num3 = (num1 * num2) + iva1;
+							var num6 = (num4 * num5) + iva2;
+							var num9 = (num7 * num8) + iva3;
 							
 							var subtotal = (num1 * num2)+(num4 * num5)+(num7 * num8);
 							var totaliva = (num1 * num2 * num10)+(num4 * num5 * num11)+(num7 * num8 * num12);
@@ -439,10 +502,12 @@
 							document.getElementById("resultado4").value = subtotal;
 							document.getElementById("resultado5").value = totaliva;
 							document.getElementById("resultado6").value = totalcompra;
+							document.getElementById("iva_producto2").value = iva2;
+							document.getElementById("iva_producto3").value = iva3;
+							
 							// document.getElementById("total").value=total;
 
-							suma();
-							
+						
 						}
 
 						
@@ -535,7 +600,7 @@
 								formData.append("codigo_venta", document.getElementById("consecutivo").value);
 								formData.append("cedula_cliente", document.getElementById("validationCustom01").value);
 								formData.append("cedula_usuario", document.getElementById("cedula_usuario").value);
-								formData.append("ivaventa", document.getElementById("resultado5").value);
+								formData.append("iva_venta", document.getElementById("resultado5").value);
 								formData.append("total_venta", document.getElementById("resultado6").value);
 								formData.append("valor_venta", document.getElementById("resultado4").value);
 								var xhr = new XMLHttpRequest();

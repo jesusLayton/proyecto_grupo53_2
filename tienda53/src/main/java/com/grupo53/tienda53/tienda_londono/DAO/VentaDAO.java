@@ -25,7 +25,7 @@ public class VentaDAO {
 
 			// String que contiene la sentencia insert a ejecutar
 			String sentencia = "INSERT INTO ventas VALUES(" + venta.getCodigo_venta() + "," + venta.getCedula_cliente()
-					+ "," + venta.getCedula_usuario() + "," + venta.getIvaventa() + "," + venta.getTotal_venta() + ","
+					+ "," + venta.getCedula_usuario() + "," + venta.getIva_venta() + "," + venta.getTotal_venta() + ","
 					+ venta.getValor_venta() + "" + ");";
 
 			// se ejecuta la sentencia en la base de datos
@@ -74,7 +74,7 @@ public class VentaDAO {
 				Venta.setCodigo_venta(Integer.parseInt(res.getString("codigo_venta")));
 				Venta.setCedula_cliente(Integer.parseInt(res.getString("cedula_cliente")));
 				Venta.setCedula_usuario(Integer.parseInt(res.getString("cedula_usuario")));
-				Venta.setIvaventa(Double.parseDouble(res.getString("ivaventa")));
+				Venta.setIva_venta(Double.parseDouble(res.getString("ivaventa")));
 				Venta.setTotal_venta(Double.parseDouble(res.getString("total_venta")));
 				Venta.setValor_venta(Double.parseDouble(res.getString("valor_venta")));
 
@@ -151,7 +151,7 @@ public class VentaDAO {
 			Statement estatuto = conex.getConnection().createStatement();
 
 			// String con la sentencia a ejecutar
-			String sentencia = "UPDATE ventas " + "SET ivaventa = " + venta.getIvaventa() + "," + "total_venta = "
+			String sentencia = "UPDATE ventas " + "SET ivaventa = " + venta.getIva_venta() + "," + "total_venta = "
 					+ venta.getTotal_venta() + "," + "valor_venta = " + venta.getValor_venta() + " "
 					+ "WHERE codigo_venta = " + venta.getCedula_usuario() + ";";
 

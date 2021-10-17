@@ -70,7 +70,7 @@
 		var arrayLineas = text.split("\n");
 		
 		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "http://localhost:8080/eliminarTodoProducto", true);
+		xhr.open("DELETE", "http://localhost:8080/eliminarTodoProducto", true);
 		xhr.send();
 
 		alert("Datos Eliminados");
@@ -107,7 +107,7 @@
 			
 			
 		}
-		<!--alert(arrayLineas.length);-->
+		alert(arrayLineas.length);
 	}
 
 	reader.readAsText(input);

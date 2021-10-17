@@ -59,7 +59,7 @@ public class ProductoController {
 			return new ModelAndView("redirect:" + "/Admin/actualizarProducto.jsp?error=1&codigo=" + codigo_producto.getCodigo_producto());
 	}
 	
-	@PostMapping("/eliminarTodoProducto")
+	@DeleteMapping("/eliminarTodoProducto")
 	public void eliminarTodoProducto(){
 		ProductoDAO Dao = new ProductoDAO();
 		Dao.eliminarTodoProducto();

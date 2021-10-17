@@ -101,6 +101,7 @@
 				}
 				
 				document.getElementById("productosinfo").innerHTML = main;
+				
 			}
 
 		}
