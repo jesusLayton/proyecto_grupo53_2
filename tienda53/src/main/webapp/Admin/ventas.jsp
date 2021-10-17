@@ -107,7 +107,7 @@
 									class="form-control" id="codigo_producto1" required>
 							</div>
 
-							<div class="col-md-3">
+							<div class="col-md-5">
 								<label for="validationCustom02" class="form-label">Nombre
 									del Producto</label> <input type="text" class="form-control"
 									id="nombre_producto" disabled="disabled">
@@ -124,10 +124,13 @@
 									id="valorunitarioproducto" disabled="disabled">
 							</div>
 							
+							<!--  
+							
 							<div class="col-md-2">
 								<label for="validationCustom02" class="form-label">Valor Iva</label>
 								<input type="text" class="form-control" id="iva_producto1" disabled="disabled">
 							</div>
+							-->
 
 							<div class="col-md-2">
 								<label for="validationCustom05" class="form-label">Valor Total</label> <input type="text" class="form-control" id="resultado1"
@@ -141,7 +144,7 @@
 								<input type="text" class="form-control" id="codigo_producto2" onchange="agregar2()" required>
 							</div>
 
-							<div class="col-md-3">
+							<div class="col-md-5">
 								<input type="text" class="form-control" id="nombre_producto2" disabled="disabled">
 							</div>
 							
@@ -153,9 +156,13 @@
 								<input type="text" class="form-control" id="valorunitarioproducto1" disabled="disabled">
 							</div>
 							
+							<!--  
+							
 							<div class="col-md-2">
 								<input type="text" class="form-control" id="iva_producto2" disabled="disabled">
 							</div>
+							
+							-->
 							
 							<div class="col-md-2">
 								<input type="text" class="form-control" id="resultado2" required disabled="disabled">
@@ -168,7 +175,7 @@
 								<input type="text" class="form-control" id="codigo_producto3" onchange="agregar3()" required>
 							</div>
 
-							<div class="col-md-3">
+							<div class="col-md-5">
 								<input type="text" class="form-control" id="nombre_producto3" disabled="disabled">
 							</div>
 							
@@ -180,9 +187,13 @@
 								<input type="text" class="form-control" id="valorunitarioproducto2" disabled="disabled">
 							</div>
 							
+							<!--  
+							
 							<div class="col-md-2">
 								<input type="text" class="form-control" id="iva_producto3" disabled="disabled">
 							</div>
+							
+							-->
 
 							<div class="col-md-2">
 								<input type="text" class="form-control" id="resultado3" required disabled="disabled">
@@ -392,81 +403,16 @@
 
 						function calcular() {
 							
-							var req = new XMLHttpRequest();
-							var coincidencia = false;
-							var codigo_producto = document
-									.getElementById("codigo_producto1").value;
-							req.open('GET',
-									'http://localhost:8080/consultarProducto/'
-											+ codigo_producto, false);
-							req.send(null);
-							var producto = null;
-							if (req.status == 200)
-								producto = JSON.parse(req.responseText);
-							console.log(JSON.parse(req.responseText));
-
-							var element = document.getElementById("error");
-							element.classList.add("visually-hidden");
-							var element2 = document
-									.getElementById("correcto");
-							element2.classList.remove("visually-hidden");
-
-							console.log(coincidencia);
-
-							if (producto.toString() != "") {
-
-								var num10 = parseFloat(producto[0].iva_compra);
-								
-							}
 							
-							var req = new XMLHttpRequest();
-							var coincidencia = false;
-							var codigo_producto = document.getElementById("codigo_producto2").value;
-							req.open('GET','http://localhost:8080/consultarProducto/' + codigo_producto, false);
-							req.send(null);
-							var producto = null;
-							if (req.status == 200)
-								producto = JSON.parse(req.responseText);
-							console.log(JSON.parse(req.responseText));
-
-							var element = document.getElementById("error");
-							element.classList.add("visually-hidden");
-							var element2 = document.getElementById("correcto");
-							element2.classList.remove("visually-hidden");
-
-							console.log(coincidencia);
-
-							if (producto.toString() != "") {
-
-								var num11 = parseFloat(producto[0].iva_compra);
-							}
 							
-							var req = new XMLHttpRequest();
-							var coincidencia = false;
-							var codigo_producto = document.getElementById("codigo_producto3").value;
-							req.open('GET','http://localhost:8080/consultarProducto/' + codigo_producto, false);
-							req.send(null);
-							var producto = null;
-							if (req.status == 200)
-								producto = JSON.parse(req.responseText);
-							console.log(JSON.parse(req.responseText));
-
-							var element = document.getElementById("error");
-							element.classList.add("visually-hidden");
-							var element2 = document.getElementById("correcto");
-							element2.classList.remove("visually-hidden");
-
-							console.log(coincidencia);
-
-							if (producto.toString() != "") {
-
-								var num12 = parseFloat(producto[0].iva_compra);
-							}
+							
+							
+							
 							
 							var num1 = parseInt(document.getElementById("valorunitarioproducto").value);
 							var num2 = parseInt(document.getElementById("cantidad1").value);
-							var iva1 = (num1 * num2 * num10);
-							document.getElementById("iva_producto1").value = iva1;
+							
+							
 							
 
 							var num4 = parseInt(document.getElementById("valorunitarioproducto1").value);
@@ -476,17 +422,15 @@
 							var num8 = parseInt(document.getElementById("cantidad3").value);
 							
 							
-							var iva1 = (num1 * num2 * num10);
-							var iva2 = (num4 * num5 * num11);
-							var iva3 = (num7 * num8 * num12);
+							var num3 = (num1 * num2) + (num1 * num2 * 0.19);
+							var num6 = (num4 * num5)+ (num4 * num5 * 0.19);
+							var num9 = (num7 * num8 )+(num7 * num8 * 0.19);
 							
 							
-							var num3 = (num1 * num2) + iva1;
-							var num6 = (num4 * num5) + iva2;
-							var num9 = (num7 * num8) + iva3;
+							
 							
 							var subtotal = (num1 * num2)+(num4 * num5)+(num7 * num8);
-							var totaliva = (num1 * num2 * num10)+(num4 * num5 * num11)+(num7 * num8 * num12);
+							var totaliva = (num1 * num2 * 0.19)+(num4 * num5 * 0.19)+(num7 * num8 * 0.19);
 							var totalcompra = subtotal + totaliva;
 
 							// var total = num3+num6+mum9;
@@ -495,15 +439,21 @@
 							console.log(num6);
 							console.log(num9);
 							// console.log(total);
+							
+							
 
 							document.getElementById("resultado1").value = num3;
+							
+							
 							document.getElementById("resultado2").value = num6;
+							
+							
 							document.getElementById("resultado3").value = num9;
 							document.getElementById("resultado4").value = subtotal;
 							document.getElementById("resultado5").value = totaliva;
 							document.getElementById("resultado6").value = totalcompra;
-							document.getElementById("iva_producto2").value = iva2;
-							document.getElementById("iva_producto3").value = iva3;
+							
+							
 							
 							// document.getElementById("total").value=total;
 
