@@ -11586,3 +11586,7 @@ footer.footer .social-link:hover {
   box-shadow: 5px 5px rgba(80, 99, 20, 0.2);
 }
 
+#bienvenida {
+	background: #8DB600;
+	font-size: 5rem;
+}
